@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>热门导航管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all">
+    <script th:src="@{/layui/layui.js}"></script>
+    <script th:src="@{/js/red-htgl-list.js}"></script>
+</head>
+<body>
+<table id="redDataTable" lay-filter="tabComponent"></table>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-primary layui-btn-sm" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-sm" lay-event="more">更多 <i class="layui-icon layui-icon-down"></i></a>
+</script>
+<script>
+    let apiUrl = "/nav";
+    let cols = [
+        [ // 表头
+            {type: 'checkbox', fixed: 'left'}
+            , {field: 'id', title: 'ID', width: '10%', sort: true, fixed: 'left'}
+            , {field: 'navName', title: '导航名称', width: '25%', sort: true}
+            , {field: 'navHeat', title: '导航热度', width: '20%'}
+            , {field: 'navNum', title: '导航排名', width: '20%'}
+            , {fixed: 'right', title: '操作', width: '21.5%', align: 'center', toolbar: '#barDemo'}
+        ]
+    ];
+    initPage("redDataTable", cols);
+</script>
+</body>
+</html>

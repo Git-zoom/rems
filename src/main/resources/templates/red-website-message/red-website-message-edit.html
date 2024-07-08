@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>问题查询</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all">
+    <script th:src="@{/layui/layui.js}"></script>
+    <script th:src="@{/js/red-htgl-edit.js}"></script>
+</head>
+<body>
+<div id="content">
+    <div id="content_header"></div>
+    <fieldset class="layui-elem-field layui-field-title">
+        <legend>问题查询基本信息</legend>
+    </fieldset>
+    <form class="layui-form layui-form-pane" action="">
+        <div class="layui-form-item layui-row">
+            <div class="layui-col-xs6">
+                <label class="layui-form-label">留言用户</label>
+                <div class="layui-input-block">
+                    <input type="text" id="recordId" name="id" hidden="hidden" th:value="${mId}"/>
+                    <input type="text" id="msgUsername" name="msgUsername" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-col-xs6">
+                <label class="layui-form-label">用户头像</label>
+                <div class="layui-input-block">
+                    <input type="text" id="msgUserFace" name="msgUserFace" class="layui-input"/>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item layui-row">
+            <div class="layui-col-xs6">
+                <label class="layui-form-label">留言日期</label>
+                <div class="layui-input-block">
+                    <input type="date" id="msgDate" name="msgDate" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item layui-row">
+            <div class="layui-col-lg12">
+                <label class="layui-form-label">留言内容</label>
+                <div class="layui-input-block">
+                    <textarea id="msgContent" name="msgContent" class="layui-input"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item" style="text-align: center">
+            <button class="layui-btn" lay-submit="" lay-filter="demo2">保存</button>
+            <button class="layui-btn" lay-submit="" lay-filter="demo2">发布</button>
+            <button class="layui-btn" onclick="script: window.close();">退出</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    let verifys = {
+        msgUsername: function (value) {
+            if (value.length === 0) {
+                return '留言用户名不能为空！';
+            }
+        }
+        , msgContent: function (value) {
+            if (value === null || value.length === 0) {
+                return "留言内容不能为空！";
+            }
+        }
+    };
+    edit("/message", verifys);
+</script>
+</body>
+</html>

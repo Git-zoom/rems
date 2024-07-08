@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>课程学习</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all">
+    <script th:src="@{/layui/layui.js}"></script>
+    <script th:src="@{/js/red-htgl-edit.js}"></script>
+</head>
+<body>
+<div id="content">
+    <div id="content_header"></div>
+    <fieldset class="layui-elem-field layui-field-title">
+        <legend>课程学习基本信息</legend>
+    </fieldset>
+    <form class="layui-form layui-form-pane" action="">
+        <div class="layui-form-item layui-row">
+            <div class="layui-col-xs6">
+                <label class="layui-form-label">课程标题</label>
+                <div class="layui-input-block">
+                    <input type="text" id="recordId" name="id" hidden="hidden" th:value="${clId}"/>
+                    <input type="text" id="courseTitle" name="courseTitle" class="layui-input" autocomplete="off">
+                </div>
+            </div>
+
+            <div class="layui-col-xs6">
+                <label class="layui-form-label">课程简述</label>
+                <div class="layui-input-block">
+                    <input type="text" id="courseSm" name="courseSm" class="layui-input"/>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item layui-row">
+            <div class="layui-col-xs12">
+                <label class="layui-form-label">课程图片</label>
+                <div class="layui-input-block">
+                    <input type="text" id="courseImg" name="courseImg" class="layui-input"/>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item layui-row">
+            <div class="layui-col-xs12">
+                <label class="layui-form-label">课程内容</label>
+                <div class="layui-input-block">
+                    <input type="text" id="courseContent" name="courseContent" class="layui-input"/>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item layui-row">
+            <div class="layui-col-xs6">
+                <label class="layui-form-label">课程索引</label>
+                <div class="layui-input-block">
+                    <input type="text" id="courseIndex" name="courseIndex" class="layui-input"/>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item" style="text-align: center">
+            <button class="layui-btn" lay-submit="" lay-filter="demo2">保存</button>
+            <button class="layui-btn" lay-submit="" lay-filter="demo2">发布</button>
+            <button class="layui-btn" onclick="script: window.close();">退出</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    let verifys = {
+        courseTitle: function (value) {
+            if (value.length == 0) {
+                return '课程标题不能为空！';
+            }
+        }
+        , courseSm: function (value) {
+            if (value == null || value.length == 0) {
+                return "课程简述不能为空！";
+            }
+        }
+    };
+    edit("/course", verifys);
+</script>
+</body>
+</html>

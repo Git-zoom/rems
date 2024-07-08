@@ -1,0 +1,10 @@
+.face img {
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
+    margin-right: 2px;
+}
+
+.face img:hover {
+    transform: scale(1.2, 1.2);
+}

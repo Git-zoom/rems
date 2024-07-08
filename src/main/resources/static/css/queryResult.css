@@ -1,0 +1,50 @@
+.queryList{
+    width: 1130px;
+    height: auto;
+    overflow: auto;
+    margin: 50px auto;
+}
+.queryList table{
+    margin:0px;
+    border: 0.5px solid #b1b1b1;
+    text-align: center;
+}
+.queryList tr td{
+    padding: 10px;
+    border: 0.5px solid #b1b1b1;
+}
+.queryList tr:first-child{
+    height: 30px;
+    color: white;
+}
+.queryList tr:first-child .td_id{
+    width: 60px;
+    background-color: #ce0002;
+}
+.queryList tr:first-child .td_title{
+    width: 200px;
+    background-color: #ce0002;
+}
+.queryList tr:first-child .td_author,.td_date,.td_source{
+    width: 100px;
+    background-color: #ce0002;
+}
+.queryList tr:first-child .td_txt{
+    background-color: #ce0002;
+}
+
+.title_query{
+    font-size: 30px;
+}
+
+.error_query{
+    color: red;
+    font-weight: bold;
+    font-size: 20px;
+    padding-left: 20px;
+}
+
+.btn_back{
+    float: right;
+    margin-top: 10px;
+}

@@ -1,0 +1,11 @@
+table .q_id {
+    width: 50px;
+}
+
+table .q_title, .q_author, .q_date, .q_source {
+    width: 130px;
+}
+
+table .q_active {
+    width: 280px;
+}

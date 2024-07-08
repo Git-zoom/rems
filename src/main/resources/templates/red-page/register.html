@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>注册页面</title>
+    <script th:src="@{/js/jquery-3.1.1.min.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/login_register.css}"/>
+    <script type="text/javascript" th:src="@{/layui/layui.js}"></script>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>红色教育网</h1>
+        <h2>Register</h2>
+    </header>
+    <div class="content">
+        <form id="register" method="post">
+            用 &nbsp; 户 &nbsp;名：
+            <input type="text" name="u_username" id="name" placeholder="请输入用户名"><br>
+            密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;码：
+            <input type="password" name="u_password" id="password" placeholder="请输入密码"><br>
+            确认 密码：
+            <input type="password" name="u_pwd2" id="password2" placeholder="请再输入一次密码"><br>
+            <input type="button" id="u_register" value="注册"/>
+            <input type="reset" id="u_reset" value="重置"><br>
+            <a id="login" href="/">已有账号？登录</a>
+        </form>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    layer = layui.layer
+    $(function () {
+        // 判断用户名密码是否为空，两次密码是否一致
+        $('#u_register').click(function () {
+            let username = $('#name');
+            let password = $('#password');
+            let repsword = $('#password2');
+            if (username.val() === "") {
+                alert("用户名不能为空！");
+                return false;
+            }
+            if (password.val() === "") {
+                alert("密码不能为空！");
+                return false;
+            }
+            if (password.val() !== repsword.val()) {
+                alert("两次输入的密码不匹配！");
+                return false;
+            }
+            //账号密码输入后进行存入数据库
+            $.ajax({
+                type: "post",
+                url: "/register",
+                data: {
+                    'username': username.val(),
+                    'password': password.val()
+                },
+                success: function (res) {
+                    console.log(res)
+                    if (res === 'ok') {
+                        layer.msg("注册成功！", {icon: 1, time: 1000})
+                        setTimeout(function (){
+                            window.location.href = "/";
+                        },1000)
+                    } else if (res === "error") {
+                        layer.msg("注册失败！", {icon: 2, time: 1000})
+                    } else {
+                        layer.msg("重复的用户名！", {icon: 2, time: 1000})
+                    }
+                },
+                error: function (err) {
+                    layer.msg("注册失败！"+err, {icon: 2, time: 1000})
+                }
+            })
+        })
+    })
+</script>
+</html>
+

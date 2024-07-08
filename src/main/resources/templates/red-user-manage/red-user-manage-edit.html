@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>用户管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all">
+    <link rel="stylesheet" th:href="@{/css/headImage.css}" media="all">
+    <script th:src="@{/layui/layui.js}"></script>
+    <script th:src="@{/js/red-htgl-edit.js}"></script>
+</head>
+<body>
+<div id="content">
+    <div id="content_header"></div>
+    <fieldset class="layui-elem-field layui-field-title">
+        <legend>用户基本信息</legend>
+    </fieldset>
+    <form class="layui-form layui-form-pane" action="">
+        <div class="layui-form-item layui-row">
+            <div class="layui-col-xs6">
+                <label class="layui-form-label">用户名</label>
+                <div class="layui-input-block">
+                    <input type="text" id="recordId" name="id" hidden="hidden" th:value="${userId}"/>
+                    <input type="text" id="username" name="username" class="layui-input" autocomplete="off"
+                           placeholder="请输入用户名">
+                </div>
+            </div>
+            <div class="layui-col-xs6">
+                <label class="layui-form-label">账号</label>
+                <div class="layui-input-block">
+                    <input type="text" id="account" name="account" class="layui-input" autocomplete="off"
+                           placeholder="请输入账号 例如: zhangsan">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item layui-row">
+            <div class="layui-col-xs6">
+                <label class="layui-form-label">密码</label>
+                <div class="layui-input-block">
+                    <input type="password" id="password" name="password" class="layui-input" autocomplete="off"
+                           placeholder="请输入密码"
+                    >
+                </div>
+            </div>
+            <div class="layui-col-xs6">
+                <label class="layui-form-label">用户类型</label>
+                <div class="layui-input-block">
+                    <select name="type" id="type">
+                        <option value="普通用户">普通用户</option>
+                        <option value="系统管理员">系统管理员</option>
+                        <option value="安全管理员">安全管理员</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item layui-row">
+            <div class="layui-col-xs6">
+                <label class="layui-form-label">用户头像</label>
+                <div class="layui-input-block">
+                    <input type="text" id="face" name="face" autocomplete="off" class="layui-input path_face">
+                </div>
+            </div>
+            <div class="layui-col-xs6">
+                <span class="face"><img src="/images/face1.gif"/><img
+                        src="/images/face2.gif"/><img
+                        src="/images/face3.gif"/><img src="/images/face4.gif"/><img
+                        src="/images/face5.gif"/><img
+                        src="/images/face6.gif"/><img src="/images/face7.gif"/><img
+                        src="/images/face8.gif"/>
+                        </span>
+            </div>
+        </div>
+        <div class="layui-form-item" style="text-align: center">
+            <button class="layui-btn" lay-submit="" lay-filter="demo2">保存</button>
+            <button class="layui-btn" lay-submit="" lay-filter="demo2">发布</button>
+            <button class="layui-btn" onclick="script: window.close();">退出</button>
+        </div>
+    </form>
+</div>
+<script>
+    let verifys = {
+        username: function (value) {
+            if (value.length === 0) {
+                return '用户名不能为空！';
+            }
+        },
+        account: function (value) {
+            if (value.length < 5) {
+                return '找账号至少5个字符！';
+            }
+        }
+        , password: [
+            /^[\S]{6,12}$/
+            , '密码必须6到12位，且不能出现空格！'
+        ]
+    };
+    edit("/user", verifys);
+</script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+.content {
+    width: 1150px;
+    height: auto;
+    margin: 100px auto;
+}
+
+.content .con_title {
+    color: #1b6d85;
+    font-size: 35px;
+}
+.content .con_title .btn_back{
+    float: right;
+    margin-top: 15px;
+    font-size: 18px;
+}
+.content .con_img {
+    width: 600px;
+    height: 400px;
+    float: left;
+    border: 1px solid #EEE;
+}
+
+.content .con_img img {
+    width: 600px;
+    height: 400px;
+}
+
+.content .con_txt {
+    float: right;
+    width: 530px;
+    padding: 25px;
+    background: #f1f1f1;
+    height: 400px;
+}
+
+.content .con_txt .titleH1 {
+    font-size: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px dotted #ddd;
+    font-weight: normal;
+    color: #333;
+}
+
+.content .con_txt .Introduce {
+    margin: 10px 0;
+}
+
+.content .con_txt .Introduce ul {
+    list-style: none;
+}
+
+.content .con_txt .Introduce ul li {
+    margin: 10px 0px;
+}
+
+.content .travelNav {
+    width: 100%;
+    height: 50px;
+    margin-top: 420px;
+}
+
+.content .travelNav ul {
+    width: 100%;
+    border: 1px solid #ddd;
+    height: 48px;
+    list-style: none;
+}
+.content .btn-buy{
+    margin-top: 20px;
+}
+.content .btn-buy .buy{
+    background: #ff9000;
+    border: none;
+    border-radius: 2px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    line-height: 38px;
+    padding: 0 30px;
+}
+.content .btn-buy a{
+    text-decoration: none;
+}
+.content .btn-buy .add{
+    background: #eea902;
+    border: none;
+    border-radius: 2px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    line-height: 38px;
+    padding: 0 30px;
+}
+
+
+.content .travelNav ul li {
+    float: left;
+    height: 46px;
+    line-height: 46px;
+    text-align: center;
+    width: 155px;
+    border-right: 1px solid #ddd;
+}
+
+.content .con_txt_title {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 0px;
+    word-spacing: 10px;
+    white-space: normal;
+    color: rgb(102, 102, 102);
+    font-family: "微软雅黑 Light";
+    font-size: 14px;
+    background-color: rgb(255, 255, 255);
+    text-indent: 2em;
+}
+
+.content .con_txt_span1 {
+    line-height: 26px;
+    text-indent: 2em;
+    font-size: 16px;
+    color: rgb(0, 0, 0);
+    background-color: rgb(238, 236, 225);
+}
+
+.content .con_txt_span2 {
+    line-height: 26px;
+    text-indent: 2em;
+    word-spacing: -1px;
+    padding-bottom: 30px;
+}
+footer{
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    color: #ffffff;
+    background-color: #ce0002;
+}
+footer a{
+    color: white;
+    text-decoration: none;
+}
+footer a:hover{
+    text-decoration: underline;
+    color: #d0d0d0;
+}
