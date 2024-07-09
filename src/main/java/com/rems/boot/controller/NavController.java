@@ -2,6 +2,8 @@ package com.rems.boot.controller;
 
 import java.util.List;
 
+import com.rems.boot.core.LayResult;
+import com.rems.boot.entity.MessageEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.ui.Model;
@@ -29,16 +31,10 @@ public class NavController {
     protected PopularNavService popularNavService;
 
     /* 获取数据列表 */
-    @GetMapping(value = "/getList")
-    public JSONObject getNavList(int page, int limit) {
-        Page<PopularNavEntity> navPage = new Page<>(page, limit);
-        Page<PopularNavEntity> result = popularNavService.page(PopularNavEntity.builder().build(), navPage);
-        JSONObject json = new JSONObject();
-        json.put("code", 0);
-        json.put("msg", 1);
-        json.put("count", result.getTotal());
-        json.put("data", result.getRecords());
-        return json;
+    @GetMapping(value = "/list")
+    public LayResult<PopularNavEntity> list(@RequestParam("page") Integer pageIndex, @RequestParam("limit") Integer pageSize) {
+        Page<PopularNavEntity> result = popularNavService.page(PopularNavEntity.builder().build(), new Page<>(pageIndex, pageSize));
+        return LayResult.ok(result.getRecords(), result.getTotal());
     }
 
     /* 增加 */

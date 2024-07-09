@@ -2,6 +2,8 @@ package com.rems.boot.controller;
 
 import java.util.List;
 
+import com.rems.boot.core.LayResult;
+import com.rems.boot.core.QueryPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -33,20 +35,14 @@ public class CourseLearningController {
 
     /**
      * 获取数据列表
-     * @param page 页数
-     * @param limit 每页记录数
+     * @param pageIndex 页数
+     * @param pageSize 每页记录数
      * @return list
      */
-    @GetMapping(value = "/getList")
-    public JSONObject getList(int page, int limit) {
-        Page<CourseLearningEntity> coursePage = new Page<>(page, limit);
-        Page<CourseLearningEntity> result = courseLearningService.page(CourseLearningEntity.builder().build(), coursePage);
-        JSONObject json = new JSONObject();
-        json.put("code", 0);
-        json.put("msg", 1);
-        json.put("count", result.getTotal());
-        json.put("data", result.getRecords());
-        return json;
+    @GetMapping(value = "/list")
+    public LayResult<CourseLearningEntity> list(@RequestParam("page") Integer pageIndex, @RequestParam("limit") Integer pageSize) {
+        Page<CourseLearningEntity> result = courseLearningService.page(CourseLearningEntity.builder().build(), new Page<>(pageIndex, pageSize));
+        return LayResult.ok(result.getRecords(), result.getTotal());
     }
 
     /* 增加 */

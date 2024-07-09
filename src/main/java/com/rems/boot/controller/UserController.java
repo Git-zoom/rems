@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.rems.boot.core.LayResult;
+import com.rems.boot.entity.QuestionEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.ui.Model;
@@ -33,16 +35,10 @@ public class UserController {
     private UserService userService;
 
     /* 获取数据列表 */
-    @GetMapping("/getList")
-    public JSONObject list1(int page, int limit) {
-        Page<UserEntity> userPage = new Page<>(page, limit);
-        Page<UserEntity> result = userService.page(UserEntity.builder().build(), userPage);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("code", 0);
-        jsonObject.put("msg", 1);
-        jsonObject.put("count", result.getTotal());
-        jsonObject.put("data", result.getRecords());
-        return jsonObject;
+    @GetMapping("/list")
+    public LayResult<UserEntity> list(@RequestParam("page") Integer pageIndex, @RequestParam("limit") Integer pageSize) {
+        Page<UserEntity> result = userService.page(UserEntity.builder().build(), new Page<>(pageIndex, pageSize));
+        return LayResult.ok(result.getRecords(), result.getTotal());
     }
 
     /* 增加 */

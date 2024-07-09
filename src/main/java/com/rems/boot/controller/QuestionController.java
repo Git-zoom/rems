@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.rems.boot.core.LayResult;
+import com.rems.boot.entity.PopularNavEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.ui.Model;
@@ -43,16 +45,10 @@ public class QuestionController {
     }
 
     /* 获取数据列表 */
-    @GetMapping("/getList")
-    public JSONObject getList(int page, int limit) {
-        Page<QuestionEntity> quesPage = new Page<>(page, limit);
-        Page<QuestionEntity> result = questionService.page(QuestionEntity.builder().build(), quesPage);
-        JSONObject json = new JSONObject();
-        json.put("code", 0);
-        json.put("msg", 1);
-        json.put("count", result.getTotal());
-        json.put("data", result.getRecords());
-        return json;
+    @GetMapping("/list")
+    public LayResult<QuestionEntity> list(@RequestParam("page") Integer pageIndex, @RequestParam("limit") Integer pageSize) {
+        Page<QuestionEntity> result = questionService.page(QuestionEntity.builder().build(), new Page<>(pageIndex, pageSize));
+        return LayResult.ok(result.getRecords(), result.getTotal());
     }
 
     /* 增加 */

@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.rems.boot.core.LayResult;
+import com.rems.boot.entity.CourseLearningEntity;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -72,16 +74,10 @@ public class MessageController {
     }
 
     /* 获取数据列表 */
-    @GetMapping("/getList")
-    public JSONObject getList(int page, int limit) {
-        Page<MessageEntity> mesPage = new Page<>(page, limit);
-        Page<MessageEntity> result = messageService.page(MessageEntity.builder().build(), mesPage);
-        JSONObject json = new JSONObject();
-        json.put("code", 0);
-        json.put("msg", 1);
-        json.put("count", result.getTotal());
-        json.put("data", result.getRecords());
-        return json;
+    @GetMapping("/list")
+    public LayResult<MessageEntity> list(@RequestParam("page") Integer pageIndex, @RequestParam("limit") Integer pageSize) {
+        Page<MessageEntity> result = messageService.page(MessageEntity.builder().build(), new Page<>(pageIndex, pageSize));
+        return LayResult.ok(result.getRecords(), result.getTotal());
     }
 
     /* 增加 */
