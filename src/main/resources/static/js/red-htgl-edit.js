@@ -18,7 +18,7 @@ function edit(apiUrl,verifys){
         let url;
         // 判断是新建页面还是编辑页面
         if (window.location.href.indexOf("add") > -1) {
-            url = apiUrl+"/addData";
+            url = apiUrl+"/add";
         }else{
             url = apiUrl+"/update";
         }
@@ -68,7 +68,7 @@ function edit(apiUrl,verifys){
         if (window.location.href.indexOf("edit") > -1) {
             let recordId = $("#recordId").val();
             $.ajax({
-                url: apiUrl+'/viewData',
+                url: apiUrl+'/get',
                 data: JSON.stringify(recordId),
                 dateType: "json",
                 contentType: 'application/json',

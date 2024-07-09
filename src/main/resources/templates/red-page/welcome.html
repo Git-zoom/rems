@@ -45,7 +45,7 @@
     <h1>Red Education Network</h1>
     <p>我们专注于教育</p>
     <!-- form-inline让表单元素水平排列 -->
-    <form class="form-inline" action="/question/searchQuestion">
+    <form class="form-inline" action="/question/search">
         <input type="text" name="title" class="form-control" size="50" placeholder="请输入你要搜索的内容"/>
         <input type="submit" class="btn btn-danger" value="查询"/>
     </form>
@@ -297,7 +297,7 @@
 
         function rest() {
             $.ajax({
-                url: "/message/queryAllMessage",
+                url: "/message/query-all",
                 type: "post",
                 dataType: "json",
                 success: function (data) {
@@ -353,7 +353,7 @@
             let content = $('#conBox');
             $.ajax({
                 type: "post",
-                url: "/message/publishMessage",
+                url: "/message/publish",
                 data: {
                     'content': content.val()
                 },

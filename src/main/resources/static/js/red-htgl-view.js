@@ -11,7 +11,7 @@ function view(apiUrl) {
 
         // 回显数据
         $.ajax({
-            url: apiUrl + '/viewData',
+            url: apiUrl + '/get',
             data: JSON.stringify(recordId),
             dateType: "json",
             contentType: 'application/json',

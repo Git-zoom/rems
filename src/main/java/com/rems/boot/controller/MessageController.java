@@ -5,21 +5,18 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.rems.boot.core.LayResult;
-import com.rems.boot.entity.CourseLearningEntity;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rems.boot.core.LayResult;
 import com.rems.boot.entity.MessageEntity;
 import com.rems.boot.entity.UserEntity;
 import com.rems.boot.service.MessageService;
-
-import net.sf.json.JSONObject;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @Author qinj
@@ -31,14 +28,47 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/message")
 public class MessageController {
 
-    protected final MessageService messageService;
+    @Autowired
+    protected MessageService messageService;
 
-    public MessageController(@Qualifier("messageServiceImpl") MessageService messageService) {
-        this.messageService = messageService;
+    @RequestMapping("/add")
+    public String addMessage(@RequestBody MessageEntity messageEntity) {
+        MessageEntity newMessage = messageService.add(messageEntity);
+        return newMessage != null ? "ok" : "error";
     }
 
-    // 查询所有留言
-    @RequestMapping("/queryAllMessage")
+    @RequestMapping("/delete")
+    public String delete(@RequestBody Integer id) {
+        messageService.delete(MessageEntity.builder().id(id).build());
+        return "ok";
+    }
+
+    @RequestMapping("/delete-batch")
+    public String deleteBatch(@RequestBody List<Long> ids) {
+        messageService.deleteBatch(ids);
+        return "ok";
+    }
+
+    @RequestMapping("/update")
+    public String update(@RequestBody MessageEntity messageEntity) {
+        messageService.update(messageEntity);
+        return "ok";
+    }
+
+    @RequestMapping("/get")
+    public MessageEntity get(@RequestBody Integer id) {
+        MessageEntity result = messageService.get(MessageEntity.builder().id(id).build());
+
+        return messageService.get(MessageEntity.builder().id(id).build());
+    }
+
+    @GetMapping("/list")
+    public LayResult<MessageEntity> list(@RequestParam("page") Integer pageIndex, @RequestParam("limit") Integer pageSize) {
+        Page<MessageEntity> result = messageService.page(MessageEntity.builder().build(), new Page<>(pageIndex, pageSize));
+        return LayResult.ok(result.getRecords(), result.getTotal());
+    }
+
+    @RequestMapping("/query-all")
     public String queryAllMessage() {
         List<MessageEntity> messageEntityList = messageService.list(new MessageEntity());
         ObjectMapper mapper = new ObjectMapper();
@@ -51,8 +81,7 @@ public class MessageController {
         return jsonStr;
     }
 
-    // 发表留言
-    @RequestMapping("/publishMessage")
+    @RequestMapping("/publish")
     public String publishMessage(String content, HttpServletRequest req) {
         MessageEntity messageEntity = new MessageEntity();
         // 获取当前用户
@@ -73,63 +102,21 @@ public class MessageController {
         return jsonStr;
     }
 
-    /* 获取数据列表 */
-    @GetMapping("/list")
-    public LayResult<MessageEntity> list(@RequestParam("page") Integer pageIndex, @RequestParam("limit") Integer pageSize) {
-        Page<MessageEntity> result = messageService.page(MessageEntity.builder().build(), new Page<>(pageIndex, pageSize));
-        return LayResult.ok(result.getRecords(), result.getTotal());
-    }
-
-    /* 增加 */
-    @RequestMapping("/add")
+    @RequestMapping("/to-add")
     public String add() {
         return "red-website-message/red-website-message-edit";
     }
 
-    @RequestMapping("/addData")
-    public String addMessage(@RequestBody MessageEntity messageEntity) {
-        MessageEntity newMessage = messageService.add(messageEntity);
-        return newMessage != null ? "ok" : "error";
-    }
-
-    @RequestMapping("/edit/{id}")
-    public ModelAndView edit(Model model, @PathVariable("id") int id) {
+    @RequestMapping("/to-edit/{id}")
+    public ModelAndView edit(Model model, @PathVariable("id") Integer id) {
         model.addAttribute("mId", id);
         return new ModelAndView("red-website-message/red-website-message-edit");
     }
 
-    /* 删除 */
-    @RequestMapping("/delete")
-    public String delete(@RequestBody int id) {
-        messageService.delete(MessageEntity.builder().id(id).build());
-        return "ok";
-    }
-
-    /* 删除多条记录 */
-    @RequestMapping("/deletes")
-    public String deletes(@RequestBody List<Long> ids) {
-        messageService.deleteBatch(ids);
-        return "ok";
-    }
-
-    /* 更新 */
-    @RequestMapping("/update")
-    public String update(@RequestBody MessageEntity messageEntity) {
-        messageService.update(messageEntity);
-        return "ok";
-    }
-
-    /* 查看 */
-    @RequestMapping("/view/{id}")
-    public ModelAndView view(Model model, @PathVariable("id") int id) {
+    @RequestMapping("/to-view/{id}")
+    public ModelAndView view(Model model, @PathVariable("id") Integer id) {
         model.addAttribute("mId", id);
         return new ModelAndView("red-website-message/red-website-message-view");
-    }
-
-    /* 数据回显 */
-    @RequestMapping("/viewData")
-    public MessageEntity viewData(@RequestBody int id) {
-        return messageService.get(MessageEntity.builder().id(id).build());
     }
 
 }

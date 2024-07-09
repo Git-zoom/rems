@@ -9,6 +9,7 @@
     <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all">
     <script th:src="@{/layui/layui.js}"></script>
     <script th:src="@{/js/red-htgl-list.js}"></script>
+    <script th:src="@{/js/utils/date-util.js}"></script>
 </head>
 <body>
 <table id="redDataTable" lay-filter="tabComponent"></table>
@@ -27,7 +28,7 @@
             , {field: 'quesAuthor', title: '文章作者', width: '20%'}
             , {
             field: 'quesDate', title: '发表日期', width: '10%',
-            templet: '<div> {{ dateToStr(d.quesDate) }} </div>'
+            templet: '<div> {{ timestampToYMDHMS(d.quesDate) }} </div>'
         }
             , {field: 'quesSource', title: '文章来源', width: '20%'}
             , {fixed: 'right', title: '操作', width: '16.5%', align: 'center', toolbar: '#barDemo'}

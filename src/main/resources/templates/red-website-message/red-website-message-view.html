@@ -10,7 +10,7 @@
     <script th:src="@{/layui/layui.js}"></script>
     <script th:src="@{/js/red-htgl-view.js}"></script>
 </head>
-<body onload="view('/messageEntity')">
+<body onload="view('/message')">
 <div id="content">
     <div id="content_header"></div>
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
@@ -37,7 +37,7 @@
             <div class="layui-col-xs6">
                 <label class="layui-form-label">留言日期</label>
                 <div class="layui-input-block">
-                    <input type="text" id="msgDate" name="msgDate" class="layui-input" readonly>
+                    <input type="text" id="createTime" name="createTime" class="layui-input" readonly>
                 </div>
             </div>
         </div>

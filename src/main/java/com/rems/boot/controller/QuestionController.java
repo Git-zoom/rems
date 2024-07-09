@@ -4,20 +4,16 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.rems.boot.core.LayResult;
-import com.rems.boot.entity.PopularNavEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.rems.boot.core.LayResult;
 import com.rems.boot.entity.QuestionEntity;
 import com.rems.boot.service.QuestionService;
-
-import net.sf.json.JSONObject;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @Author qinj
@@ -30,11 +26,44 @@ import org.springframework.web.servlet.ModelAndView;
 public class QuestionController {
 
     @Autowired
-    @Qualifier("questionServiceImpl")
     protected QuestionService questionService;
 
-    // 查询问题 模糊查询
-    @RequestMapping("/searchQuestion")
+    @RequestMapping("/add")
+    public String addQuestion(@RequestBody QuestionEntity questionEntity) {
+        QuestionEntity newQuestion = questionService.add(questionEntity);
+        return newQuestion != null ? "ok" : "error";
+    }
+
+    @RequestMapping("/delete")
+    public String delete(@RequestBody Integer id) {
+        questionService.delete(QuestionEntity.builder().id(id).build());
+        return "ok";
+    }
+
+    @RequestMapping("/delete-batch")
+    public String deleteBatch(@RequestBody List<Long> ids) {
+        boolean flag = questionService.deleteBatch(ids);
+        return flag ? "ok" : "error";
+    }
+
+    @RequestMapping("/update")
+    public String update(@RequestBody QuestionEntity q) {
+        questionService.update(q);
+        return "ok";
+    }
+
+    @RequestMapping("/get")
+    public QuestionEntity get(@RequestBody Integer id) {
+        return questionService.get(QuestionEntity.builder().id(id).build());
+    }
+
+    @GetMapping("/list")
+    public LayResult<QuestionEntity> list(@RequestParam("page") Integer pageIndex, @RequestParam("limit") Integer pageSize) {
+        Page<QuestionEntity> result = questionService.page(QuestionEntity.builder().build(), new Page<>(pageIndex, pageSize));
+        return LayResult.ok(result.getRecords(), result.getTotal());
+    }
+
+    @RequestMapping("/search")
     public ModelAndView searchQuestion(Model model, String title, HttpServletRequest req) {
         if (StringUtils.isEmpty(title)) {
             model.addAttribute("error", "未查到");
@@ -44,63 +73,21 @@ public class QuestionController {
         return new ModelAndView("red-page/queryResult");
     }
 
-    /* 获取数据列表 */
-    @GetMapping("/list")
-    public LayResult<QuestionEntity> list(@RequestParam("page") Integer pageIndex, @RequestParam("limit") Integer pageSize) {
-        Page<QuestionEntity> result = questionService.page(QuestionEntity.builder().build(), new Page<>(pageIndex, pageSize));
-        return LayResult.ok(result.getRecords(), result.getTotal());
-    }
-
-    /* 增加 */
-    @RequestMapping("/add")
+    @RequestMapping("/to-add")
     public ModelAndView add() {
         return new ModelAndView("red-question-query/red-question-query-edit");
     }
 
-    @RequestMapping("/addData")
-    public String addQuestion(@RequestBody QuestionEntity questionEntity) {
-        QuestionEntity newQuestion = questionService.add(questionEntity);
-        return newQuestion != null ? "ok" : "error";
-    }
-
-    @RequestMapping("/edit/{id}")
-    public ModelAndView edit(Model model, @PathVariable("id") int id) {
+    @RequestMapping("/to-edit/{id}")
+    public ModelAndView edit(Model model, @PathVariable("id") Integer id) {
         model.addAttribute("qId", id);
         return new ModelAndView("red-question-query/red-question-query-edit");
     }
 
-    /* 删除 */
-    @RequestMapping("/delete")
-    public String delete(@RequestBody int id) {
-        questionService.delete(QuestionEntity.builder().id(id).build());
-        return "ok";
-    }
-
-    /* 删除多条记录 */
-    @RequestMapping("/deletes")
-    public String deletes(@RequestBody List<Long> ids) {
-        boolean flag = questionService.deleteBatch(ids);
-        return flag ? "ok" : "error";
-    }
-
-    /* 更新 */
-    @RequestMapping("/update")
-    public String update(@RequestBody QuestionEntity q) {
-        questionService.update(q);
-        return "ok";
-    }
-
-    /* 查看 */
-    @RequestMapping("/view/{id}")
-    public ModelAndView view(Model model, @PathVariable("id") int id) {
+    @RequestMapping("/to-view/{id}")
+    public ModelAndView view(Model model, @PathVariable("id") Integer id) {
         model.addAttribute("qId", id);
         return new ModelAndView("red-question-query/red-question-query-view");
-    }
-
-    /* 数据回显 */
-    @RequestMapping("/viewData")
-    public QuestionEntity viewData(@RequestBody int id) {
-        return questionService.get(QuestionEntity.builder().id(id).build());
     }
 
 }

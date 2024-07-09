@@ -9,6 +9,7 @@
     <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all">
     <script th:src="@{/layui/layui.js}"></script>
     <script th:src="@{/js/red-htgl-list.js}"></script>
+    <script th:src="@{/js/utils/date-util.js}"></script>
 </head>
 <body>
 <table id="redDataTable" lay-filter="tabComponent"></table>
@@ -30,7 +31,7 @@
                 '<div><img style="width: 40px;height: 40px" src="/images/{{ d.msgUserFace }}" alt="{{ d.msgUsername }}"/></div>',
             style: 'margin:0;padding:3px 5px;'
         }
-            , {field: 'createTime', title: '留言日期', width: '10%', templet: '<div> {{ dateToStr(d.createTime) }} </div>'}
+            , {field: 'createTime', title: '留言日期', width: '10%', templet: '<div> {{ timestampToYMDHMS(d.createTime) }} </div>'}
             , {field: 'msgContent', title: '留言内容', width: '35%'}
             , {fixed: 'right', title: '操作', width: '21.5%', align: 'center', toolbar: '#barDemo'}
         ]

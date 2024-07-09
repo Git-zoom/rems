@@ -32,7 +32,7 @@ function initPage(tableId, cols) {
             switch (obj.event) {
                 // 添加用户
                 case 'add':
-                    openWindow(apiUrl + "/add", "添加" + pageTitle);
+                    openWindow(apiUrl + "/to-add", "添加" + pageTitle);
                     break;
                 // 编辑用户
                 case 'update':
@@ -41,7 +41,7 @@ function initPage(tableId, cols) {
                     } else if (data.length > 1) {
                         layer.msg('只能同时编辑一个');
                     } else {
-                        openWindow(apiUrl + "/edit", "编辑" + pageTitle);
+                        openWindow(apiUrl + "/to-edit", "编辑" + pageTitle);
                     }
                     break;
                 // 删除多个用户
@@ -51,7 +51,7 @@ function initPage(tableId, cols) {
                         ids.push(data[i].id);
                     }
                     $.ajax({
-                        url: apiUrl + "/deletes",
+                        url: apiUrl + "/delete-batch",
                         data: JSON.stringify(ids),
                         type: "post",
                         contentType: 'application/json',
@@ -82,7 +82,7 @@ function initPage(tableId, cols) {
                 , layEvent = obj.event; // 获得 lay-event 对应的值
             // 查看事件
             if (layEvent === 'detail') {
-                openWindow(apiUrl + "/view/" + data.id, "查看" + pageTitle)
+                openWindow(apiUrl + "/to-view/" + data.id, "查看" + pageTitle)
                 // 更多事件
             } else if (layEvent === 'more') {
                 // 下拉菜单
@@ -126,7 +126,7 @@ function initPage(tableId, cols) {
                             });
                             // 编辑按钮事件
                         } else if (menudata.id === 'edit') {
-                            openWindow(apiUrl + "/edit/" + data.id, "编辑" + pageTitle);
+                            openWindow(apiUrl + "/to-edit/" + data.id, "编辑" + pageTitle);
                         }
                     }
                     , align: 'right' // 右对齐弹出
