@@ -18,7 +18,7 @@ function initPage(tableId, cols) {
             elem: '#' + tableId
             , id: 'dataTable'
             , height: 'full-0'
-            , url: apiUrl + "/getList"
+            , url: apiUrl + "/list"
             , page: true // 开启分页
             , toolbar: 'default'
             , size: 'lg' // 大尺寸表格

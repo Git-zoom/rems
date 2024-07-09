@@ -1,11 +1,18 @@
 package com.rems.boot.core;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  * @Author qinj
  * @Date 2024/7/8
  * @Description 查询页面
  * @Version 1.0
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class QueryPage {
 
     /**
