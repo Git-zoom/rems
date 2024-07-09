@@ -32,40 +32,38 @@ public class MessageController {
     protected MessageService messageService;
 
     @RequestMapping("/add")
-    public String addMessage(@RequestBody MessageEntity messageEntity) {
+    public LayResult<Void> addMessage(@RequestBody MessageEntity messageEntity) {
         MessageEntity newMessage = messageService.add(messageEntity);
-        return newMessage != null ? "ok" : "error";
+        return newMessage != null ? LayResult.success() : LayResult.error("添加失败");
     }
 
     @RequestMapping("/delete")
-    public String delete(@RequestBody Integer id) {
+    public LayResult<Void> delete(@RequestBody Integer id) {
         messageService.delete(MessageEntity.builder().id(id).build());
-        return "ok";
+        return LayResult.success();
     }
 
     @RequestMapping("/delete-batch")
-    public String deleteBatch(@RequestBody List<Long> ids) {
-        messageService.deleteBatch(ids);
-        return "ok";
+    public LayResult<Void> deleteBatch(@RequestBody List<Long> ids) {
+        boolean flag = messageService.deleteBatch(ids);
+        return flag ? LayResult.success() : LayResult.error("批量删除失败");
     }
 
     @RequestMapping("/update")
-    public String update(@RequestBody MessageEntity messageEntity) {
+    public LayResult<Void> update(@RequestBody MessageEntity messageEntity) {
         messageService.update(messageEntity);
-        return "ok";
+        return LayResult.success();
     }
 
     @RequestMapping("/get")
     public MessageEntity get(@RequestBody Integer id) {
-        MessageEntity result = messageService.get(MessageEntity.builder().id(id).build());
-
         return messageService.get(MessageEntity.builder().id(id).build());
     }
 
     @GetMapping("/list")
     public LayResult<MessageEntity> list(@RequestParam("page") Integer pageIndex, @RequestParam("limit") Integer pageSize) {
         Page<MessageEntity> result = messageService.page(MessageEntity.builder().build(), new Page<>(pageIndex, pageSize));
-        return LayResult.ok(result.getRecords(), result.getTotal());
+        return LayResult.success(result.getRecords(), result.getTotal());
     }
 
     @RequestMapping("/query-all")

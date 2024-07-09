@@ -5,6 +5,9 @@ import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.rems.boot.core.LayResult;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,51 +38,55 @@ public class LoginController {
 
     @Autowired
     private UserService userService;
+
     @Autowired
     private CourseLearningService courseLearningService;
+
     @Autowired
     private PopularNavService popularNavService;
 
     // 登录验证
     @RequestMapping("/login")
-    public String login(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletRequest req) {
+    public LayResult<Void> login(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletRequest req) {
+        log.info("#login username: " + username);
+        if (Strings.isEmpty(username) || Strings.isEmpty(password)) {
+            throw new IllegalArgumentException("用户名或密码不能为空");
+        }
+
         UserEntity userEntity = userService.checkLogin(username, password);
-        String result;
+        LayResult<Void> result;
         if (userEntity != null) {
             req.getSession().setAttribute("user", userEntity);
-            result = "ok";
+            result = LayResult.success();
+            log.info("#login success username: " + username);
         } else {
-            result = "error";
+            result = LayResult.error("用户名或密码错误");
+            log.error("#login error username: " + username);
         }
         return result;
     }
 
     // 注册用户
     @RequestMapping("/register")
-    public String register(@RequestParam("username") String username, @RequestParam("password") String password) {
+    public LayResult<Void> register(@RequestParam("username") String username, @RequestParam("password") String password) {
+        log.info("#register username: " + username);
+        if (Strings.isEmpty(username) || Strings.isEmpty(password)) {
+            throw new IllegalArgumentException("用户名或密码不能为空");
+        }
+
         // 检查用户名是否重复
         UserEntity userEntity2 = userService.get(UserEntity.builder().username(username).build());
         if (userEntity2 != null) {
-            return "Duplicate username";
+            return LayResult.error("用户名已存在");
         }
-        UserEntity userEntity = new UserEntity();
-        userEntity.setUsername(username);
-        userEntity.setPassword(password);
-        UserEntity newUser = userService.add(userEntity);
-
-        String result;
-        if (newUser != null) {
-            result = "ok";
-        } else {
-            result = "error";
-        }
-        return result;
+        UserEntity newUser = userService.add(UserEntity.builder().username(username).password(password).type(UserTypeEnum.USER).build());
+        return Objects.nonNull(newUser) ? LayResult.success() : LayResult.error("注册失败");
     }
 
     // 进入首页 -> 加载数据 (热门导航信息)
     @RequestMapping("/welcome")
     public ModelAndView loginCheck(HttpServletRequest req) {
-        // 查询数据
+        // 数据预热
         List<PopularNavEntity> pnList = popularNavService.list(new PopularNavEntity());
         List<CourseLearningEntity> cList = courseLearningService.list(new CourseLearningEntity());
         req.getSession().setAttribute("cList", cList);
@@ -88,11 +95,11 @@ public class LoginController {
     }
 
     // 进入后台管理检查管理员身份
-    @RequestMapping("/checkAdmin")
-    public String checkAdmin(HttpServletRequest request) {
+    @RequestMapping("/check-admin")
+    public LayResult<Void> checkAdmin(HttpServletRequest request) {
         UserEntity userEntity = (UserEntity)request.getSession().getAttribute("user");
         log.info("#checkAdmin userEntity: " + userEntity);
-        return UserTypeEnum.ADMIN.getCode().equals(userEntity.getType().getCode()) ? "ok" : "error";
+        return UserTypeEnum.ADMIN.getCode().equals(userEntity.getType().getCode()) ? LayResult.success() : LayResult.error("权限不足，请联系管理员");
     }
 
     // 退出登录

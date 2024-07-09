@@ -3,6 +3,7 @@ let table = null
 let dropdown = null // 下拉框
 let $ = null
 let pageTitle = document.title
+
 /**
  * @function layui的页面初始化
  * @param tableId 页面table的id
@@ -15,20 +16,19 @@ function initPage(tableId, cols) {
         $ = layui.jquery;
         // 页面初始化 --> 加载数据
         table.render({
-            elem: '#' + tableId
-            , id: 'dataTable'
-            , height: 'full-0'
-            , url: apiUrl + "/list"
-            , page: true // 开启分页
-            , toolbar: 'default'
-            , size: 'lg' // 大尺寸表格
-            , cols: cols
+            elem: '#' + tableId,
+            id: 'dataTable',
+            height: 'full-0',
+            url: apiUrl + "/list",
+            page: true, // 开启分页
+            toolbar: 'default',
+            size: 'lg', // 大尺寸表格
+            cols: cols
         });
         table.resize('dataTable');
         // 顶部工具栏事件
         table.on('toolbar(tabComponent)', function (obj) {
-            let checkStatus = table.checkStatus(obj.config.id)
-                , data = checkStatus.data; // 获取选中的数据
+            let checkStatus = table.checkStatus(obj.config.id), data = checkStatus.data; // 获取选中的数据
             switch (obj.event) {
                 // 添加用户
                 case 'add':
@@ -41,7 +41,7 @@ function initPage(tableId, cols) {
                     } else if (data.length > 1) {
                         layer.msg('只能同时编辑一个');
                     } else {
-                        openWindow(apiUrl + "/to-edit", "编辑" + pageTitle);
+                        openWindow(apiUrl + "/to-edit/" + data[0].id, "编辑" + pageTitle);
                     }
                     break;
                 // 删除多个用户
@@ -57,24 +57,27 @@ function initPage(tableId, cols) {
                         contentType: 'application/json',
                         success: (res) => {
                             console.log(res);
-                            layer.msg("删除成功！", {
-                                icon: 1,
-                                time: 1000
-                            }, function () {
-                                table.reload("dataTable", {})
-                            });
+                            if (res.code === 0) {
+                                layer.msg("删除成功！", {
+                                    icon: 1, time: 1500
+                                }, function () {
+                                    table.reload("dataTable", {})
+                                });
+                            } else {
+                                layer.msg("删除失败！", {
+                                    icon: 2, time: 1500
+                                });
+                            }
                         },
                         error: (error) => {
                             console.log(error)
                             layer.msg("删除失败！", {
-                                icon: 2,
-                                time: 1000
+                                icon: 2, time: 1500
                             });
                         }
                     })
                     break;
             }
-            ;
         });
         // 行内编辑查看事件
         table.on('tool(tabComponent)', function (obj) {
@@ -90,13 +93,10 @@ function initPage(tableId, cols) {
                     elem: this // 触发事件的 DOM 对象
                     , show: true // 外部事件触发即显示
                     , data: [{
-                        title: '编辑'
-                        , id: 'edit'
+                        title: '编辑', id: 'edit'
                     }, {
-                        title: '删除'
-                        , id: 'del'
-                    }]
-                    , click: function (menudata) {
+                        title: '删除', id: 'del'
+                    }], click: function (menudata) {
                         // 删除一条记录
                         if (menudata.id === 'del') {
                             layer.confirm('真的删除行么', function (index) {
@@ -110,16 +110,14 @@ function initPage(tableId, cols) {
                                     contentType: 'application/json',
                                     success: () => {
                                         layer.msg("删除成功", {
-                                            icon: 1,
-                                            time: 1000
+                                            icon: 1, time: 1500
                                         }, function () {
                                             table.reload("dataTable", {})
                                         });
                                     },
                                     error: () => {
                                         layer.msg("删除失败", {
-                                            icon: 2,
-                                            time: 1000
+                                            icon: 2, time: 1500
                                         });
                                     }
                                 })
@@ -128,8 +126,7 @@ function initPage(tableId, cols) {
                         } else if (menudata.id === 'edit') {
                             openWindow(apiUrl + "/to-edit/" + data.id, "编辑" + pageTitle);
                         }
-                    }
-                    , align: 'right' // 右对齐弹出
+                    }, align: 'right' // 右对齐弹出
                     , style: 'box-shadow: 1px 1px 10px rgb(0 0 0 / 12%);' // 设置额外样式
                 })
             }
@@ -140,7 +137,7 @@ function initPage(tableId, cols) {
 /**
  * @function 刷新表格
  */
-function refreshList() {
+function refreshTable() {
     layui.table.reload("dataTable", {})
 }
 
@@ -152,23 +149,6 @@ function refreshList() {
 function openWindow(url, title) {
     let page = window;
     let iWidth = window.screen.availWidth;
-    let iHeight = window.screen.availWidth;
+    let iHeight = window.screen.availHeight;
     window.open(url, title, "width=" + iWidth + ",height=" + iHeight, page);
-}
-
-
-/**
- * @function 日期格式化 将 "yyyy-mm-dd HH:mm:ss" 转化为 "yyyy-mm-dd"
- * @param date 时间  "yyyy-mm-dd HH:mm:ss"
- * @returns {string} 返回日期格式 "yyyy-mm-dd"
- */
-function dateToStr(date) {
-    var time = new Date(date.time);
-    var y = time.getFullYear();
-    var M = time.getMonth() + 1;
-    M = M < 10 ? ("0" + M) : M;
-    var d = time.getDate();
-    d = d < 10 ? ("0" + d) : d;
-    var str = y + "-" + M + "-" + d;
-    return str;
 }

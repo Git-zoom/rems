@@ -58,15 +58,13 @@
                 },
                 success: function (res) {
                     console.log(res)
-                    if (res === 'ok') {
+                    if (res.code === 0) {
                         layer.msg("注册成功！", {icon: 1, time: 1000})
                         setTimeout(function (){
                             window.location.href = "/";
                         },1000)
-                    } else if (res === "error") {
-                        layer.msg("注册失败！", {icon: 2, time: 1000})
                     } else {
-                        layer.msg("重复的用户名！", {icon: 2, time: 1000})
+                        layer.msg(res.msg, {icon: 2, time: 1000})
                     }
                 },
                 error: function (err) {

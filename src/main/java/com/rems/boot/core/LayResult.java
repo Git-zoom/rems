@@ -38,14 +38,14 @@ public class LayResult<T> {
     /**
      * 返回有数据信息
      */
-    public static <T> LayResult<T> ok(List<T> data, Long count) {
+    public static <T> LayResult<T> success(List<T> data, Long count) {
         return new LayResult<>(LayCodeEnum.SUCCESS.getCode(), "success", count, data);
     }
 
     /**
      * 返回无数据信息
      */
-    public static <T> LayResult<T> ok() {
+    public static <T> LayResult<T> success() {
         return new LayResult<>(LayCodeEnum.SUCCESS.getCode(), "success", 0L, null);
     }
 

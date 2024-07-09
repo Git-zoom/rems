@@ -37,9 +37,9 @@ public class CourseLearningController {
      * @return result
      */
     @RequestMapping("/add")
-    public String addCourse(@RequestBody CourseLearningEntity courseLearningEntity) {
+    public LayResult<Void> addCourse(@RequestBody CourseLearningEntity courseLearningEntity) {
         CourseLearningEntity newCourse = courseLearningService.add(courseLearningEntity);
-        return newCourse != null ? "ok" : "error";
+        return newCourse != null ? LayResult.success() : LayResult.error("添加失败");
     }
 
     /**
@@ -49,9 +49,9 @@ public class CourseLearningController {
      * @return result
      */
     @RequestMapping("/delete")
-    public String delete(@RequestBody Integer id) {
+    public LayResult<Void> delete(@RequestBody Integer id) {
         courseLearningService.delete(CourseLearningEntity.builder().id(id).build());
-        return "ok";
+        return LayResult.success();
     }
 
     /**
@@ -61,9 +61,9 @@ public class CourseLearningController {
      * @return result
      */
     @RequestMapping("/delete-batch")
-    public String deleteBatch(@RequestBody List<Long> ids) {
+    public LayResult<Void> deleteBatch(@RequestBody List<Long> ids) {
         boolean result = courseLearningService.deleteBatch(ids);
-        return result ? "ok" : "error";
+        return result ? LayResult.success() : LayResult.error("批量删除失败");
     }
 
     /**
@@ -73,9 +73,9 @@ public class CourseLearningController {
      * @return result
      */
     @RequestMapping("/update")
-    public String update(@RequestBody CourseLearningEntity cl) {
+    public LayResult<Void> update(@RequestBody CourseLearningEntity cl) {
         courseLearningService.update(cl);
-        return "ok";
+        return LayResult.success();
     }
 
     /**
@@ -99,7 +99,7 @@ public class CourseLearningController {
     @GetMapping(value = "/list")
     public LayResult<CourseLearningEntity> list(@RequestParam("page") Integer pageIndex, @RequestParam("limit") Integer pageSize) {
         Page<CourseLearningEntity> result = courseLearningService.page(CourseLearningEntity.builder().build(), new Page<>(pageIndex, pageSize));
-        return LayResult.ok(result.getRecords(), result.getTotal());
+        return LayResult.success(result.getRecords(), result.getTotal());
     }
 
     /**

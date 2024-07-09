@@ -29,27 +29,27 @@ public class QuestionController {
     protected QuestionService questionService;
 
     @RequestMapping("/add")
-    public String addQuestion(@RequestBody QuestionEntity questionEntity) {
+    public LayResult<Void> addQuestion(@RequestBody QuestionEntity questionEntity) {
         QuestionEntity newQuestion = questionService.add(questionEntity);
-        return newQuestion != null ? "ok" : "error";
+        return newQuestion != null ? LayResult.success() : LayResult.error("添加失败");
     }
 
     @RequestMapping("/delete")
-    public String delete(@RequestBody Integer id) {
+    public LayResult<Void> delete(@RequestBody Integer id) {
         questionService.delete(QuestionEntity.builder().id(id).build());
-        return "ok";
+        return LayResult.success();
     }
 
     @RequestMapping("/delete-batch")
-    public String deleteBatch(@RequestBody List<Long> ids) {
+    public LayResult<Void> deleteBatch(@RequestBody List<Long> ids) {
         boolean flag = questionService.deleteBatch(ids);
-        return flag ? "ok" : "error";
+        return flag ? LayResult.success() : LayResult.error("批量删除失败");
     }
 
     @RequestMapping("/update")
-    public String update(@RequestBody QuestionEntity q) {
+    public LayResult<Void> update(@RequestBody QuestionEntity q) {
         questionService.update(q);
-        return "ok";
+        return LayResult.success();
     }
 
     @RequestMapping("/get")
@@ -60,13 +60,13 @@ public class QuestionController {
     @GetMapping("/list")
     public LayResult<QuestionEntity> list(@RequestParam("page") Integer pageIndex, @RequestParam("limit") Integer pageSize) {
         Page<QuestionEntity> result = questionService.page(QuestionEntity.builder().build(), new Page<>(pageIndex, pageSize));
-        return LayResult.ok(result.getRecords(), result.getTotal());
+        return LayResult.success(result.getRecords(), result.getTotal());
     }
 
     @RequestMapping("/search")
     public ModelAndView searchQuestion(Model model, String title, HttpServletRequest req) {
         if (StringUtils.isEmpty(title)) {
-            model.addAttribute("error", "未查到");
+            model.addAttribute("error", "请输入搜索内容");
         }
         List<QuestionEntity> queryList = questionService.list(QuestionEntity.builder().quesTitle(title).build());
         req.getSession().setAttribute("queryList", queryList);

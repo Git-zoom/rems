@@ -1,8 +1,6 @@
-function edit(apiUrl,verifys){
+function edit(apiUrl, verifys) {
     layui.use(['form', 'layedit', 'laydate'], function () {
-        let form = layui.form
-            , layer = layui.layer
-            , laydate = layui.laydate;
+        let form = layui.form, layer = layui.layer, laydate = layui.laydate;
         let $ = layui.jquery;
         // 日期
         laydate.render({
@@ -18,9 +16,9 @@ function edit(apiUrl,verifys){
         let url;
         // 判断是新建页面还是编辑页面
         if (window.location.href.indexOf("add") > -1) {
-            url = apiUrl+"/add";
-        }else{
-            url = apiUrl+"/update";
+            url = apiUrl + "/add";
+        } else {
+            url = apiUrl + "/update";
         }
 
         // 监听提交
@@ -32,32 +30,24 @@ function edit(apiUrl,verifys){
                 dateType: "json",
                 contentType: 'application/json',
                 success: (res) => {
-                    if (res == 'ok') {
+                    if (res.code === 0) {
                         layer.msg("保存成功！", {
-                            icon: 1,
-                            time: 1000
+                            icon: 1, time: 1500
                         });
                         setTimeout(() => {
-                            window.opener.refreshList();
+                            window.opener.refreshTable();
                             window.close();
                             window.history.go(-1);
-                        }, 2000)
-                    } else if (res == 'error') {
-                        layer.msg("保存失败！", {
-                            icon: 2,
-                            time: 1000
-                        });
+                        }, 1000)
                     } else {
-                        layer.msg("用户名已存在！", {
-                            icon: 2,
-                            time: 1000
+                        layer.msg(res.msg, {
+                            icon: 2, time: 1500
                         });
                     }
                 },
                 error: (error) => {
                     layer.msg("保存失败！", {
-                        icon: 2,
-                        time: 1000
+                        icon: 2, time: 1500
                     });
                 }
             })
@@ -68,21 +58,20 @@ function edit(apiUrl,verifys){
         if (window.location.href.indexOf("edit") > -1) {
             let recordId = $("#recordId").val();
             $.ajax({
-                url: apiUrl+'/get',
+                url: apiUrl + '/get',
                 data: JSON.stringify(recordId),
                 dateType: "json",
                 contentType: 'application/json',
                 type: 'post',
                 success: (res) => {
-                    for(let param in res){
+                    for (let param in res) {
                         $('#' + param + '').val(res[param]);
                     }
                     $('.layui-unselect').val(res.type);
                 },
                 error: () => {
                     layer.msg("查询失败", {
-                        icon: 2,
-                        time: 1000
+                        icon: 2, time: 1500
                     });
                 }
             })

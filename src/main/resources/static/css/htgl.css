@@ -151,10 +151,10 @@ ul li a:hover{
 }
 
 .footerText{
-    font-size: 0.7rem !important;
+    font-size: 1.1rem !important;
     color: #7a8b9a;
-    letter-spacing: 0.8px;
-    font-family: Arial, sans-serif !important;
+    letter-spacing: 1px;
+    font-family: microsoft yahei, serif;
 }
 
 .layui-tab-content {

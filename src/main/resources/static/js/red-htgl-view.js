@@ -1,7 +1,6 @@
 function view(apiUrl) {
     layui.use(['form', 'layedit', 'laydate'], function () {
-        let layer = layui.layer
-            , laydate = layui.laydate;
+        let layer = layui.layer, laydate = layui.laydate;
         let $ = layui.jquery;
         let recordId = $("#recordId").val();
         // 日期
@@ -17,7 +16,7 @@ function view(apiUrl) {
             contentType: 'application/json',
             type: 'post',
             success: (res) => {
-                for(let param in res){
+                for (let param in res) {
                     $('#' + param + '').val(res[param]);
                 }
                 $('.layui-unselect').val(res.type);
@@ -25,8 +24,7 @@ function view(apiUrl) {
             error: (err) => {
                 console.log(err);
                 layer.msg("查询失败", {
-                    icon: 2,
-                    time: 1000
+                    icon: 2, time: 1500
                 });
             }
         })

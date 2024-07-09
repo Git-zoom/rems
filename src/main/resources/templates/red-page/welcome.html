@@ -328,9 +328,9 @@
         $('#htgl').click(function () {
             $.ajax({
                 type: "post",
-                url: "/checkAdmin",
-                success: function (data) {
-                    if (data == 'ok') {
+                url: "/check-admin",
+                success: function (res) {
+                    if (res.code === 0) {
                         window.location.href = "/htgl";
                     } else {
                         layer.msg("当前用户不是超级管理员，切换登录再来试试吧！", {

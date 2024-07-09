@@ -32,36 +32,36 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/add")
-    public String addUser(@RequestBody UserEntity userEntity) {
+    public LayResult<Void> addr(@RequestBody UserEntity userEntity) {
         UserEntity userEntity1 = new UserEntity();
         UserEntity userEntity2 = userService.get(UserEntity.builder().username(userEntity.getUsername()).build());
         if (userEntity2 != null) {
-            return "error,用户名已存在";
+            LayResult.error("用户名已存在");
         }
         userEntity1.setUsername(userEntity.getUsername());
         userEntity1.setPassword(userEntity.getPassword());
         userEntity1.setFace(userEntity.getFace());
         userEntity1.setType(userEntity.getType());
         UserEntity newUser = userService.add(userEntity);
-        return newUser != null ? "ok" : "error";
+        return newUser != null ? LayResult.success() : LayResult.error("添加用户失败");
     }
 
     @DeleteMapping("/delete")
-    public String deleteUser(@RequestBody Integer id) {
+    public LayResult<Void> deleteUser(@RequestBody Integer id) {
         userService.delete(UserEntity.builder().id(id).build());
-        return "ok";
+        return LayResult.success();
     }
 
     @RequestMapping("/delete-batch")
-    public String deleteUsers(@RequestBody List<Long> ids) {
+    public LayResult<Void> deleteUsers(@RequestBody List<Long> ids) {
         boolean flag = userService.deleteBatch(ids);
-        return flag ? "ok" : "error";
+        return flag ? LayResult.success() : LayResult.error("批量删除失败");
     }
 
     @RequestMapping("/update")
-    public String updateUser(@RequestBody UserEntity userEntity) {
+    public LayResult<Void> updateUser(@RequestBody UserEntity userEntity) {
         userService.update(userEntity);
-        return "ok";
+        return LayResult.success();
     }
 
     @RequestMapping("/get")
@@ -74,23 +74,23 @@ public class UserController {
     @GetMapping("/list")
     public LayResult<UserEntity> list(@RequestParam("page") Integer pageIndex, @RequestParam("limit") Integer pageSize) {
         Page<UserEntity> result = userService.page(UserEntity.builder().build(), new Page<>(pageIndex, pageSize));
-        return LayResult.ok(result.getRecords(), result.getTotal());
+        return LayResult.success(result.getRecords(), result.getTotal());
     }
 
     // 搜索用户
     @RequestMapping("/search")
-    public String searchUser(@RequestParam("username") String username, HttpServletRequest req) {
-        String result;
+    public LayResult<Void> searchUser(@RequestParam("username") String username, HttpServletRequest req) {
+        LayResult<Void> result;
         List<UserEntity> userEntityList;
         if (StringUtils.isEmpty(username)) {
-            result = "error";
+            result = LayResult.error("请输入用户名");
             req.getSession().setAttribute("msg", "未查到");
             return result;
         } else {
             UserEntity userEntity = userService.get(UserEntity.builder().username(username).build());
             userEntityList = new ArrayList<>();
             userEntityList.add(userEntity);
-            result = "ok";
+            result = LayResult.success();
             req.getSession().removeAttribute("msg");
             // 结果返回
             req.getSession().setAttribute("userList", userEntityList);
