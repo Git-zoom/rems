@@ -1,52 +1,62 @@
-*{
+* {
     padding: 0;
     marign: 0;
 }
-.cl_container{
+
+.cl_container {
     width: 1150px;
     height: 100%;
     margin: 100px auto;
 }
-.cl_container .cl_logo{
+
+.cl_container .cl_logo {
     width: 350px;
     font-size: 38px;
     color: #f88787;
 }
-.cl_container .cl_logo_ms{
+
+.cl_container .cl_logo_ms {
     width: 100%;
     font-size: 20px;
     color: #bdbdbd;
 }
-.cl_container ul{
+
+.cl_container ul {
     width: 1150px;
     height: 100%;
     list-style: none;
 }
-.cl_container ul li{
+
+.cl_container ul li {
     width: 383.3px;
-    height: 400px ;
+    height: 400px;
     float: left;
 }
-.cl_container .course{
+
+.cl_container .course {
     width: 350px;
     height: 250px;
 }
-.cl_container .cl_title{
+
+.cl_container .cl_title {
     font-size: 24px;
     color: #000;
     font-weight: normal;
     padding: 10px 0;
 }
-.cl_container .cl_image{
+
+.cl_container .cl_image {
     width: 350px;
     height: 250px;
 }
-.cl_container .cl_a1{
+
+.cl_container .cl_a1 {
     width: 350px;
     font-size: 18px;
     padding: 10px 0 5px;
 }
-.cl_container .cl_p1{
+
+.cl_container .cl_p1 {
     width: 350px;
     color: #9d9d9d;
     height: 51px;

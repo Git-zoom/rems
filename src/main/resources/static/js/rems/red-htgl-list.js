@@ -16,13 +16,8 @@ function initPage(tableId, cols) {
         $ = layui.jquery;
         // 页面初始化 --> 加载数据
         table.render({
-            elem: '#' + tableId,
-            id: 'dataTable',
-            height: 'full-0',
-            url: apiUrl + "/list",
-            page: true, // 开启分页
-            toolbar: 'default',
-            size: 'lg', // 大尺寸表格
+            elem: '#' + tableId, id: 'dataTable', height: 'full-0', url: apiUrl + "/list", page: true, // 开启分页
+            toolbar: 'default', size: 'lg', // 大尺寸表格
             cols: cols
         });
         table.resize('dataTable');

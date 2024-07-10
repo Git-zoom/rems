@@ -14,6 +14,6 @@ function errorMsg(msg) {
 
 function warnMsg(msg) {
     layer.msg(msg, {
-        icon:0, time: 1500, offset: ['20px'], anim: 0
+        icon: 0, time: 1500, offset: ['20px'], anim: 0
     });
 }

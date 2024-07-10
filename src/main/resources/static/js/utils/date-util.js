@@ -15,7 +15,6 @@ function dateToStr(date) {
     return y + "-" + M + "-" + d;
 }
 
-
 function timestampToYMDHMS(timestamp) {
     const date = new Date(timestamp);
     const year = date.getFullYear();

@@ -1,16 +1,17 @@
-body{
+body {
     font: 400 15px sans-serif;
     line-height: 1.8;
     color: #818181;
 }
+
 /* 导航栏样式 */
-.navbar-header a{
+.navbar-header a {
     position: relative;
     bottom: 10px;
     margin-bottom: 0;
 }
 
-.navbar{
+.navbar {
     margin-bottom: 0;
     background-color: #ce0002;
     z-index: 9999;
@@ -21,50 +22,53 @@ body{
     border-radius: 0;
 }
 
-.navbar li a,.navbar .navbar-brand{
+.navbar li a, .navbar .navbar-brand {
     color: #fff !important;
 }
 
-.navbar-nav li a:hover,.navbar-nav li.active a{
+.navbar-nav li a:hover, .navbar-nav li.active a {
     color: #ce0002 !important;
     background-color: #fff !important;
 }
 
-.navbar-default .navbar-toggle{
+.navbar-default .navbar-toggle {
     border-color: transparent;
     color: #fff !important;
 }
+
 /* 问题查询 */
-.jumbotron{
-    font-family: Montserrat,sans-serif;
+.jumbotron {
+    font-family: Montserrat, sans-serif;
     background-color: #ce0002;
     color: #FFFFFF;
     padding: 100px 25px;
 }
 
-.glyphicon{
+.glyphicon {
     color: red;
 }
+
 /* 课程学习 */
-.bg-grey{
+.bg-grey {
     background-color: #f6f6f6;
 }
-.container-fluid{
+
+.container-fluid {
     padding: 60px 50px;
 }
 
-.col_two{
+.col_two {
     padding-left: 160px;
 }
 
-.logo{
+.logo {
     color: #d50000;
     font-size: 200px;
 }
 
 
 /* 课程学习2 */
-.thumbnail img{
+.thumbnail img {
     width: 100%;
     height: 100%;
     margin-bottom: 10px;
@@ -79,15 +83,15 @@ body{
 }
 
 /* 网站留言  轮播图 */
-.carousel-control span{
+.carousel-control span {
     color: #ce0002;
 }
 
-.carousel-indicators li{
+.carousel-indicators li {
     border-color: #ce0002;
 }
 
-.carousel-indicators li.active{
+.carousel-indicators li.active {
     background-color: #ce0002;
 }
 
@@ -127,7 +131,8 @@ body, div, h2, h3, ul, li, p {
 }
 
 #userName, #conBox {
-    width: 500px;height: 200px;
+    width: 500px;
+    height: 200px;
     color: #777;
     border: 1px solid #d0d0d0;
     border-radius: 6px;
@@ -223,7 +228,7 @@ body, div, h2, h3, ul, li, p {
     word-wrap: break-word;
 }
 
-#msgBox .list  {
+#msgBox .list {
     display: inline;
     padding-right: 5px;
 }
@@ -270,7 +275,7 @@ body, div, h2, h3, ul, li, p {
 }
 
 /* 轮播图 */
-.item h4{
+.item h4 {
     font-size: 19px;
     line-height: 1.375em;
     font-weight: 400;
@@ -278,68 +283,73 @@ body, div, h2, h3, ul, li, p {
     margin: 70px 0;
 }
 
-.item span{
+.item span {
     font-style: normal;
 }
 
-.panel{
+.panel {
     border: 1px solid #ce0002;
     transition: box-shadow 0.5s;
     height: 480px;
 }
 
-.panel-footer h3{
+.panel-footer h3 {
     font-size: 32px;
 }
-#service .panel-body{
+
+#service .panel-body {
     height: 400px;
     overflow: auto;
 }
-#pricing .panel-body{
+
+#pricing .panel-body {
     height: 160px;
 }
-.panel-footer h4{
+
+.panel-footer h4 {
     color: #aaa;
     font-size: 14px;
 }
 
-.panel:hover{
-    box-shadow: 5px 0 40px rgba(0,0,0,0.2);
+.panel:hover {
+    box-shadow: 5px 0 40px rgba(0, 0, 0, 0.2);
 }
 
-.panel-footer button:link{
+.panel-footer button:link {
     color: #000000;
 }
 
-.panel-footer button:hover{
+.panel-footer button:hover {
     border: 1px solid #ce0002;
     opacity: 0.8;
 }
 
-.panel-heading{
+.panel-heading {
     color: #fff !important;
     background-color: #ce0002 !important;
     padding: 25px;
     border-bottom: 1px solid transparent;
 }
 
-.panel-footer{
+.panel-footer {
     background-color: #fff !important;
     height: 150px;
 }
-.panel-footer .btn{
+
+.panel-footer .btn {
     margin: 15px 0;
-    background-color:#ce0002;
+    background-color: #ce0002;
     color: #fff;
 }
 
 /* 页脚 */
 
-footer .glyphicon{
+footer .glyphicon {
     font-size: 20px;
     margin-bottom: 20px;
     color: #ce0002;
 }
-footer a span{
+
+footer a span {
     color: #ce0002;
 }

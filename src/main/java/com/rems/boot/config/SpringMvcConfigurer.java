@@ -50,7 +50,20 @@ public class SpringMvcConfigurer implements WebMvcConfigurer {
             // 拦截规则 ，拦截那些路径
             .addPathPatterns("/**")
             // 那些路径不拦截
-            .excludePathPatterns("/", "/login", "/index", "/toRegister", "/register", "/static/**", "/css/**", "/images/**", "/js/**", "/layui/**", "/**/**/*.html");
+            .excludePathPatterns(
+                    "/",
+                    "/login",
+                    "/index",
+                    "/toRegister",
+                    "/register",
+                    "/static/**",
+                    "/css/**",
+                    "/images/**",
+                    "/js/**",
+                    "/layui/**",
+                    "/jquery/**",
+                    "/bootstrap/**",
+                    "/**/**/*.html");
     }
 
     @Override

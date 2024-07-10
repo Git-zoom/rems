@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8">
     <title>热门导航</title>
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all">
+    <meta content="webkit" name="renderer">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+    <link media="all" rel="stylesheet" th:href="@{/layui/css/layui.css}">
     <script th:src="@{/layui/layui.js}"></script>
     <script th:src="@{/js/rems/red-htgl-edit.js}"></script>
 </head>
@@ -16,13 +16,13 @@
     <fieldset class="layui-elem-field layui-field-title">
         <legend>导航基本信息</legend>
     </fieldset>
-    <form class="layui-form layui-form-pane" action="">
+    <form action="" class="layui-form layui-form-pane">
         <div class="layui-form-item layui-row">
             <div class="layui-col-xs12">
                 <label class="layui-form-label">导航名称</label>
                 <div class="layui-input-block">
-                    <input type="text" id="recordId" name="id" hidden="hidden" th:value="${pnId}"/>
-                    <input type="text" id="navName" name="navName" class="layui-input"/>
+                    <input hidden="hidden" id="recordId" name="id" th:value="${pnId}" type="text"/>
+                    <input class="layui-input" id="navName" name="navName" type="text"/>
                 </div>
             </div>
         </div>
@@ -30,21 +30,21 @@
             <div class="layui-col-xs6">
                 <label class="layui-form-label">导航排名</label>
                 <div class="layui-input-block">
-                    <input type="text" id="navNum" name="navNum" class="layui-input"/>
+                    <input class="layui-input" id="navNum" name="navNum" type="text"/>
                 </div>
             </div>
 
             <div class="layui-col-xs6">
                 <label class="layui-form-label">导航热度</label>
                 <div class="layui-input-block">
-                    <input type="text" id="navHeat" name="navHeat" class="layui-input"/>
+                    <input class="layui-input" id="navHeat" name="navHeat" type="text"/>
                 </div>
             </div>
         </div>
         <div class="layui-form-item" style="text-align: center">
-            <button class="layui-btn" lay-submit="" lay-filter="demo2">保存</button>
-            <button class="layui-btn" lay-submit="" lay-filter="demo2">发布</button>
-            <button class="layui-btn" onclick="script: window.close();">退出</button>
+            <button class="layui-btn" lay-filter="demo2" lay-submit="">保存</button>
+            <button class="layui-btn" lay-filter="demo2" lay-submit="">发布</button>
+            <button class="layui-btn" onclick="window.close();">退出</button>
         </div>
     </form>
 </div>
