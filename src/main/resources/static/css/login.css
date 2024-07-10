@@ -3,109 +3,34 @@
     padding: 0;
 }
 
-.container {
+html {
+    background-image: url('../images/rems.jpg');
+    background-repeat: repeat-x;
+    background-size: cover;
+    background-positon: center;
+    font-family: "黑体", serif;
+    height: 100vh;
     width: 100%;
-    height: 600px;
-}
-
-body {
-   /* background-color: #ce0002;*/
-    background-color: firebrick;
 }
 
 header {
-    width: 500px;
-    height: 120px;
+    width: 50%;
+    height: 12%;
     margin: 0 auto;
     text-align: center;
 }
 
 h1 {
-    margin-top: 70px;
+    padding-top: 12%;
     color: #FFFFFF;
-    text-shadow: 0 0 10px;
+    font-size: 40px;
+    text-shadow: 0 0 5px;
 }
 
 h2 {
     color: #FFFFFF;
-    margin-top: 60px;
-    text-shadow: 0 0 10px;
-}
-
-.content {
-    width: 500px;
-    height: 280px;
-    margin: 50px auto;
-}
-
-.content form {
-    width: 500px;
-    height: 180px;
-    margin: 0 auto;
-    padding: 50px 0px;
-    font-size: 17px;
-    color: #4b4b4b;
-    font-weight: bold;
-    font-family: "times new roman";
-    border: 1px solid #999999;
-    border-radius: 20px;
-    box-shadow: 0 0 50px #7d7d7d;
-    text-align: center;
-    background-color: rgba(255, 255, 255, 0.9);
-}
-
-input {
-    border-radius: 5px;
-    margin: 10px 0px;
-    height: 20px;
-    font-weight: bold;
-    font-size: 14px;
-    color: #4b4b4b;
-    font-family: "times new roman";
-    background-color: rgba(255, 255, 255, 0.9);
-}
-
-#username, #password {
-    padding-left: 10px;
-}
-
-#u_login {
-    width: 117px;
-    height: 27px;
-    color: white;
-    background-color: rgba(206, 0, 2, 0.7);
-    margin-right: 15px;
-}
-
-#u_login:hover {
-    cursor: pointer;
-    background-color: rgba(206, 0, 2, 0.85);
-}
-
-#u_reset {
-    width: 117px;
-    height: 27px;
-    color: white;
-    background-color: rgba(206, 0, 2, 0.7);
-    margin-left: 10px;
-}
-
-#u_reset:hover {
-    cursor: pointer;
-    background-color: rgba(206, 0, 2, 0.85);
-}
-
-#register {
-    color: #444444;
-}
-
-#register {
-    text-decoration: none;
-    color: #444444;
-}
-
-#register:hover {
-    color: #ce0002;
+    padding-top: 5%;
+    text-shadow: 0 0 5px;
 }
 
 input::-webkit-input-placeholder {
@@ -114,8 +39,127 @@ input::-webkit-input-placeholder {
     font-weight: normal;
 }
 
-#warn {
-    color: red;
-    font-size: 16px;
+.container {
+    width: 100%;
+    height: 100%;
+}
+
+.content {
+    width: 100%;
+    height: 40%;
+    margin: 3% auto;
+}
+
+.content form {
+    width: 500px;
+    height: 190px;
+    margin: 0 auto;
+    padding: 50px 0px;
+    font-size: 18px;
+    color: #4b4b4b;
     font-weight: bold;
+    font-family: "黑体", serif;
+    border: 1px solid #999999;
+    border-radius: 20px;
+    box-shadow: 0 0 50px #7d7d7d;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.input-group {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.input-group-item {
+    padding: 10px 0;
+}
+
+.input {
+    max-width: 100%;
+    height: 35px;
+    background-color: #05060f0a;
+    border-radius: .5rem;
+    padding: 0 1rem;
+    border: 2px solid #636469FF;
+    font-size: 1rem;
+    transition: border-color .3s cubic-bezier(.25, .01, .25, 1) 0s, color .3s cubic-bezier(.25, .01, .25, 1) 0s, background .2s cubic-bezier(.25, .01, .25, 1) 0s;
+}
+
+.label {
+    display: inline-block;
+    margin-bottom: .3rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #05060f99;
+    transition: color .3s cubic-bezier(.25, .01, .25, 1) 0s;
+}
+
+.input:hover, .input:focus, .input-group:hover .input {
+    outline: none;
+    border-color: #05060f;
+}
+
+.input-group:hover .label, .input:focus {
+    color: #05060fc2;
+}
+
+.button {
+    width: 40%;
+    height: 30px;
+    color: white;
+    font-size: 16px;
+    font-weight: normal;
+    font-family: "黑体", serif;
+    border-radius: .5rem;
+    border: 1px solid #636469FF;
+    background-color: rgba(206, 0, 2, 0.7);
+    margin: 0 auto;
+}
+
+.btn-login {
+    margin-right: 25px;
+}
+
+.btn-reset {
+    margin-left: 25px;
+}
+
+.button:hover {
+    cursor: pointer;
+    background-color: rgba(206, 0, 2, 0.85);
+}
+
+.to-register {
+
+    text-align: right;
+    padding-right: 20px;
+}
+
+.register {
+    color: #afafaf;
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 14px;
+    text-align: right;
+}
+
+.register-blue {
+    color: #1e9fff;
+}
+
+.register-blue:hover {
+    text-decoration: underline;
+    color: #0093ff;
+}
+
+.register:hover {
+    color: #ce0002;
+    cursor: pointer;
+}
+
+.warn {
+    color: red;
+    font-size: 14px;
+    font-weight: normal;
 }

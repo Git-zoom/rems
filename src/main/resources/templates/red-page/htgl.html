@@ -9,6 +9,7 @@
     <link rel="stylesheet" th:href="@{/css/htgl.css}">
     <script type="text/javascript" th:src="@{/js/jquery-3.1.1.min.js}"></script>
     <script type="text/javascript" th:src="@{/layui/layui.js}"></script>
+    <script th:src="@{/js/utils/lay-msg.js}"></script>
 </head>
 <body>
 <div class="layui-layout layui-layout-admin">
@@ -17,7 +18,7 @@
         <!-- 右上角用户个人中心 -->
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item layui-hide layui-show-md-inline-block">
-                <a href="javascript:;">
+                <a href="javascript:">
                     <img th:src="@{'/images/'+${session.user.face}}" style="border-radius: 50%">
                     [[${session.user.username} ]]
                 </a>
@@ -78,7 +79,7 @@
             </ul>
             <div class="layui-tab-content">
                 <div style="width: 100%;height: 837px" id="MyIframe">
-                    <span style="height: 40px;width: 550px;margin: 0px auto; padding: 250px 0 0;font-size: 50px;display: block;color:#808080; ">欢迎进入后台管理系统！</span>
+                    <span style="height: 40px;width: 550px;margin: 0 auto; padding: 250px 0 0;font-size: 50px;display: block;color:#808080; ">欢迎进入后台管理系统！</span>
                 </div>
             </div>
         </div>
@@ -101,8 +102,8 @@
         // 头部事件
         util.event('lay-header-event', {
             // 左侧菜单事件
-            menuLeft: function (othis) {
-                layer.msg('展开左侧菜单的操作', {icon: 0});
+            menuLeft: function () {
+                successMsg("展开左侧菜单的操作")
             }
             , menuRight: function () {
                 layer.open({

@@ -96,9 +96,9 @@ function initPage(tableId, cols) {
                         title: '编辑', id: 'edit'
                     }, {
                         title: '删除', id: 'del'
-                    }], click: function (menudata) {
+                    }], click: function (menuData) {
                         // 删除一条记录
-                        if (menudata.id === 'del') {
+                        if (menuData.id === 'del') {
                             layer.confirm('真的删除行么', function (index) {
                                 layer.close(index);
                                 console.log(data.id)
