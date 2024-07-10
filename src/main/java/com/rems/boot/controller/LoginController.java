@@ -76,7 +76,11 @@ public class LoginController {
         if (userEntity2 != null) {
             return LayResult.error("用户名已存在");
         }
-        UserEntity newUser = userService.add(UserEntity.builder().username(username).password(password).type(UserTypeEnum.USER).build());
+        UserEntity newUser = userService.add(
+                UserEntity.builder()
+                        .username(username)
+                        .password(password)
+                        .type(UserTypeEnum.USER).build());
         return Objects.nonNull(newUser) ? LayResult.success() : LayResult.error("注册失败");
     }
 
