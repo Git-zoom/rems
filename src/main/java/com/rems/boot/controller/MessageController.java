@@ -101,20 +101,20 @@ public class MessageController {
     }
 
     @RequestMapping("/to-add")
-    public String add() {
-        return "red-website-message/red-website-message-edit";
+    public ModelAndView add() {
+        return new ModelAndView("/rems-back/rems-message-manage/rems-message-manage-edit");
     }
 
     @RequestMapping("/to-edit/{id}")
     public ModelAndView edit(Model model, @PathVariable("id") Integer id) {
         model.addAttribute("mId", id);
-        return new ModelAndView("red-website-message/red-website-message-edit");
+        return new ModelAndView("/rems-back/rems-message-manage/rems-message-manage-edit");
     }
 
     @RequestMapping("/to-view/{id}")
     public ModelAndView view(Model model, @PathVariable("id") Integer id) {
         model.addAttribute("mId", id);
-        return new ModelAndView("red-website-message/red-website-message-view");
+        return new ModelAndView("/rems-back/rems-message-manage/rems-message-manage-view");
     }
 
 }

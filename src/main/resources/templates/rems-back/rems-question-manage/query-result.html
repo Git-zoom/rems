@@ -1,0 +1,33 @@
+<html  lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>查询结果</title>
+    <meta charset="UTF-8" content="text/html"/>
+    <link rel="stylesheet" type="text/css" href="/css/queryResult.css"/>
+</head>
+<body>
+<div th:replace="rems-back/rems-core/top :: html"></div>
+<div class="queryList">
+    <span class="title_query">查询结果</span>
+    <span class="error_query">[[${session.error}]]</span>
+    <a class="btn btn-danger btn_back" href="/front-index">返回</a>
+    <table>
+        <tr>
+            <td class="td_id">编号</td>
+            <td class="td_title">标题</td>
+            <td class="td_author">作者</td>
+            <td class="td_date">日期</td>
+            <td class="td_source">来源</td>
+            <td class="td_txt">正文</td>
+        </tr>
+        <tr th:each="ql:${session.queryList}">
+            <td>[[${ql.id}]]</td>
+            <td>[[${ql.quesTitle}]]</td>
+            <td>[[${ql.quesAuthor}]]</td>
+            <td>[[${#dates.format(ql.quesDate, 'yyyy-MM-dd')}]]</td>
+            <td>[[${ql.quesSource}]]</td>
+            <td>[[${ql.quesTxt}]]</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

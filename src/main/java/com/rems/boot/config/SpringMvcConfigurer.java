@@ -23,33 +23,34 @@ public class SpringMvcConfigurer implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         // 登录页面映射
-        registry.addViewController("/").setViewName("login");
-        registry.addViewController("/login.html").setViewName("login");
+        registry.addViewController("/").setViewName("/rems-front/login");
+        registry.addViewController("/login.html").setViewName("/rems-front/login");
         // 注册页面映射
-        registry.addViewController("/toRegister").setViewName("red-page/register");
-        registry.addViewController("/htgl").setViewName("red-page/htgl");
-        registry.addViewController("/iframe").setViewName("red-page/iframe");
-        registry.addViewController("/course01").setViewName("red-page/cl_01");
-        registry.addViewController("/course02").setViewName("red-page/cl_02");
-        registry.addViewController("/course03").setViewName("red-page/cl_03");
-        registry.addViewController("/course04").setViewName("red-page/cl_04");
-        registry.addViewController("/red-user-manage-list").setViewName("red-user-manage/red-user-manage-list");
-        registry.addViewController("/red-course-learning-list").setViewName("red-course-learning/red-course-learning-list");
-        registry.addViewController("/courseLearning").setViewName("red-page/courseLearning");
-        registry.addViewController("/red-question-query-list").setViewName("red-question-query/red-question-query-list");
-        registry.addViewController("/red-nav-manage-list").setViewName("red-nav-manage/red-nav-manage-list");
-        registry.addViewController("/red-website-message-list").setViewName("red-website-message/red-website-message-list");
+        registry.addViewController("/toRegister").setViewName("/rems-front/register");
+        registry.addViewController("/back").setViewName("/rems-back/index");
+        registry.addViewController("/iframe").setViewName("/rems-back/rems-core/iframe");
+        registry.addViewController("/course01").setViewName("/rems-back/rems-course-learning-manage/course-learning-01");
+        registry.addViewController("/course02").setViewName("/rems-back/rems-course-learning-manage/course-learning-02");
+        registry.addViewController("/course03").setViewName("/rems-back/rems-course-learning-manage/course-learning-03");
+        registry.addViewController("/course04").setViewName("/rems-back/rems-course-learning-manage/course-learning-04");
+        registry.addViewController("/rems-user-manage-list").setViewName("/rems-back/rems-user-manage/rems-user-manage-list");
+        registry.addViewController("/rems-course-learning-manage-list").setViewName("/rems-back/rems-course-learning-manage/rems-course-learning-manage-list");
+        registry.addViewController("/rems-question-manage-list").setViewName("/rems-back/rems-question-manage/rems-question-manage-list");
+        registry.addViewController("/rems-popular-nav-manage-list").setViewName("/rems-back/rems-popular-nav-manage/rems-popular-nav-manage-list");
+        registry.addViewController("/rems-message-manage-list").setViewName("/rems-back/rems-message-manage/rems-message-manage-list");
+
+
+        registry.addViewController("/course-learning").setViewName("rems-back/rems-course-learning-manage/course-learning");
 
     }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginInterceptor())
-                // 拦截规则 ，拦截那些路径
-                .addPathPatterns("/**")
-                // 那些路径不拦截
-                .excludePathPatterns("/", "/login", "/index","/toRegister","/register",
-                        "/static/**", "/css/**", "/images/**","/js/**","/layui/**","/**/**/*.html");
+            // 拦截规则 ，拦截那些路径
+            .addPathPatterns("/**")
+            // 那些路径不拦截
+            .excludePathPatterns("/", "/login", "/index", "/toRegister", "/register", "/static/**", "/css/**", "/images/**", "/js/**", "/layui/**", "/**/**/*.html");
     }
 
     @Override

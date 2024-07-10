@@ -109,7 +109,7 @@ public class CourseLearningController {
      */
     @RequestMapping("/to-add")
     public ModelAndView add() {
-        return new ModelAndView("red-course-learning/red-course-learning-edit");
+        return new ModelAndView("/rems-back/rems-course-learning-manage/rems-course-learning-manage-edit");
     }
 
     /**
@@ -122,7 +122,7 @@ public class CourseLearningController {
     @RequestMapping("/to-edit/{id}")
     public ModelAndView edit(Model model, @PathVariable("id") Integer id) {
         model.addAttribute("clId", id);
-        return new ModelAndView("red-course-learning/red-course-learning-edit");
+        return new ModelAndView("/rems-back/rems-course-learning-manage/rems-course-learning-manage-edit");
     }
 
     /**
@@ -135,7 +135,7 @@ public class CourseLearningController {
     @RequestMapping("/to-view/{id}")
     public ModelAndView view(Model model, @PathVariable("id") Integer id) {
         model.addAttribute("clId", id);
-        return new ModelAndView("red-course-learning/red-course-learning-view");
+        return new ModelAndView("/rems-back/rems-course-learning-manage/rems-course-learning-manage-view");
     }
 
 }

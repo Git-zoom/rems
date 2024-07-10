@@ -64,19 +64,19 @@ public class PopularNavController {
 
     @RequestMapping("/to-add")
     public ModelAndView addNav() {
-        return new ModelAndView("red-nav-manage/red-nav-manage-edit");
+        return new ModelAndView("/rems-back/rems-popular-nav-manage/rems-popular-nav-manage-edit");
     }
 
     @RequestMapping("/to-edit/{id}")
     public ModelAndView editUser(Model model, @PathVariable("id") Integer id) {
         model.addAttribute("pnId", id);
-        return new ModelAndView("red-nav-manage/red-nav-manage-edit");
+        return new ModelAndView("/rems-back/rems-popular-nav-manage/rems-popular-nav-manage-edit");
     }
 
     @RequestMapping("/to-view/{id}")
     public ModelAndView viewNav(Model model, @PathVariable("id") Integer id) {
         model.addAttribute("pnId", id);
-        return new ModelAndView("red-nav-manage/red-nav-manage-view");
+        return new ModelAndView("/rems-back/rems-popular-nav-manage/rems-popular-nav-manage-view");
     }
 
 }

@@ -99,20 +99,20 @@ public class UserController {
     }
 
     @PostMapping("/to-add")
-    public String addUserTest() {
-        return "red-user-manage/red-user-manage-edit";
+    public ModelAndView addUserTest() {
+        return new ModelAndView("/rems-back/rems-user-manage/rems-user-manage-edit");
     }
 
     @RequestMapping("/to-edit/{userId}")
     public ModelAndView editUser(Model model, @PathVariable("userId") Integer userId) {
         model.addAttribute("userId", userId);
-        return new ModelAndView("red-user-manage/red-user-manage-edit");
+        return new ModelAndView("/rems-back/rems-user-manage/rems-user-manage-edit");
     }
 
     @RequestMapping("/to-view/{userId}")
     public ModelAndView viewTest(Model model, @PathVariable("userId") Integer userId) {
         model.addAttribute("userId", userId);
-        return new ModelAndView("red-user-manage/red-user-manage-view");
+        return new ModelAndView("/rems-back/rems-user-manage/rems-user-manage-view");
     }
 
 }

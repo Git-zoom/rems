@@ -70,24 +70,24 @@ public class QuestionController {
         }
         List<QuestionEntity> queryList = questionService.list(QuestionEntity.builder().quesTitle(title).build());
         req.getSession().setAttribute("queryList", queryList);
-        return new ModelAndView("red-page/queryResult");
+        return new ModelAndView("/rems-back/rems-question-manage/query-result");
     }
 
     @RequestMapping("/to-add")
     public ModelAndView add() {
-        return new ModelAndView("red-question-query/red-question-query-edit");
+        return new ModelAndView("/rems-back/rems-question-manage/rems-question-manage-edit");
     }
 
     @RequestMapping("/to-edit/{id}")
     public ModelAndView edit(Model model, @PathVariable("id") Integer id) {
         model.addAttribute("qId", id);
-        return new ModelAndView("red-question-query/red-question-query-edit");
+        return new ModelAndView("/rems-back/rems-question-manage/rems-question-manage-edit");
     }
 
     @RequestMapping("/to-view/{id}")
     public ModelAndView view(Model model, @PathVariable("id") Integer id) {
         model.addAttribute("qId", id);
-        return new ModelAndView("red-question-query/red-question-query-view");
+        return new ModelAndView("/rems-back/rems-question-manage/rems-question-manage-view");
     }
 
 }

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>查看导航</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all">
+    <script th:src="@{/layui/layui.js}"></script>
+    <script th:src="@{/js/rems/red-htgl-view.js}"></script>
+</head>
+<body onload="view('/nav')">
+<div id="content">
+    <div id="content_header"></div>
+    <fieldset class="layui-elem-field layui-field-title">
+        <legend>导航基本信息</legend>
+    </fieldset>
+    <form class="layui-form layui-form-pane" action="">
+        <div class="layui-form-item layui-row">
+            <div class="layui-col-xs12">
+                <label class="layui-form-label">导航名称</label>
+                <div class="layui-input-block">
+                    <input type="text" id="navName" name="navName" class="layui-input" autocomplete="off" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item layui-row">
+            <div class="layui-col-xs6">
+                <label class="layui-form-label">导航排名</label>
+                <div class="layui-input-block">
+                    <input type="text" id="navNum" name="navNum" class="layui-input" readonly/>
+                </div>
+            </div>
+
+            <div class="layui-col-xs6">
+                <label class="layui-form-label">导航热度</label>
+                <div class="layui-input-block">
+                    <input type="text" id="navHeat" name="navHeat" class="layui-input" readonly/>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item" style="text-align: center">
+            <button class="layui-btn" lay-submit="" lay-filter="demo2" onclick="script: window.close();">退出</button>
+        </div>
+    </form>
+    <input hidden="hidden" id="recordId" th:value="${pnId}"/>
+</div>
+</body>
+</html>

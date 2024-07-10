@@ -5,14 +5,11 @@ import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.rems.boot.core.LayResult;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rems.boot.entity.CourseLearningEntity;
@@ -84,14 +81,14 @@ public class LoginController {
     }
 
     // 进入首页 -> 加载数据 (热门导航信息)
-    @RequestMapping("/welcome")
+    @RequestMapping("/front-index")
     public ModelAndView loginCheck(HttpServletRequest req) {
         // 数据预热
         List<PopularNavEntity> pnList = popularNavService.list(new PopularNavEntity());
         List<CourseLearningEntity> cList = courseLearningService.list(new CourseLearningEntity());
         req.getSession().setAttribute("cList", cList);
         req.getSession().setAttribute("pnList", pnList);
-        return new ModelAndView("red-page/welcome");
+        return new ModelAndView("rems-front/index");
     }
 
     // 进入后台管理检查管理员身份
