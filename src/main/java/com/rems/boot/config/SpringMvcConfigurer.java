@@ -62,6 +62,7 @@ public class SpringMvcConfigurer implements WebMvcConfigurer {
                     "/js/**",
                     "/layui/**",
                     "/jquery/**",
+                    "/md5/**",
                     "/bootstrap/**",
                     "/**/**/*.html");
     }

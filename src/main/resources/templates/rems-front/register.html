@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/rems/login-register.css}"/>
     <script type="text/javascript" th:src="@{/layui/layui.js}"></script>
     <script th:src="@{/js/utils/lay-msg.js}"></script>
+    <script th:src="@{/md5/md5.min.js}"></script>
 </head>
 <body>
 <div class="container">
@@ -68,13 +69,16 @@
                 errorMsg("两次输入的密码不匹配！")
                 return false;
             }
+            let salt = "1a2b3c4d";
+            let str = "" + salt.charAt(0) + salt.charAt(2) + password.val() + salt.charAt(5) + salt.charAt(4);
+            let passwordEncrypt = md5(str);
             //账号密码输入后进行存入数据库
             $.ajax({
                 type: "post",
                 url: "/register",
                 data: {
                     'username': username.val(),
-                    'password': password.val()
+                    'password': passwordEncrypt
                 },
                 success: function (res) {
                     console.log(res)

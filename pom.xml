@@ -139,6 +139,16 @@
             <artifactId>mybatis-plus-core</artifactId>
             <version>3.5.3</version>
         </dependency>
+        <!-- m. MD5 加密相关 -->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>

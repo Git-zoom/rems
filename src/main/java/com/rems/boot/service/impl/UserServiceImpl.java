@@ -14,6 +14,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.rems.boot.entity.UserEntity;
 import com.rems.boot.mapper.UserMapper;
 import com.rems.boot.service.UserService;
+import com.rems.boot.utils.MD5Util;
 
 /**
  * @Author qinj
@@ -32,12 +33,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
 
     @Override
     public UserEntity checkLogin(String username, String password) {
-        UserEntity oldUserEntity = UserEntity.builder().username(username).password(password).build();
+        UserEntity oldUserEntity = UserEntity.builder().username(username).build();
         UserEntity userEntity = get(oldUserEntity);
-        if (userEntity != null && userEntity.getPassword().equals(password)) {
-            return userEntity;
+        String saltPassword = userEntity.getPassword();
+        if (!MD5Util.verifySaltPassword(password, saltPassword)) {
+            throw new RuntimeException("用户名或密码错误");
         }
-        throw new RuntimeException("用户名或密码错误");
+        return userEntity;
     }
 
     @Override

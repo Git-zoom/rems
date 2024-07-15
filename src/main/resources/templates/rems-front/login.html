@@ -8,6 +8,7 @@
     <script th:src="@{/jquery/jquery-3.7.1.js}"></script>
     <script th:src="@{/layui/layui.js}"></script>
     <script th:src="@{/js/utils/lay-msg.js}"></script>
+    <script th:src="@{/md5/md5.min.js}"></script>
 </head>
 <body>
 <div class="container">
@@ -68,13 +69,16 @@
                 password.focus();
                 return false;
             }
+            let salt = "1a2b3c4d";
+            let str = "" + salt.charAt(0) + salt.charAt(2) + password.val() + salt.charAt(5) + salt.charAt(4);
+            let passwordEncrypt = md5(str);
             // 账号密码不为空，去后台检查账号密码是否正确
             $.post({
                 type: "POST",
                 url: "/login",
                 data: {
                     'username': username.val(),
-                    'password': password.val()
+                    'password': passwordEncrypt
                 },
                 success: function (res) {
                     if (res.code === 0) {

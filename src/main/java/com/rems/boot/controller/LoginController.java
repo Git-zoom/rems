@@ -6,6 +6,7 @@ import java.util.Objects;
 import javax.servlet.http.HttpServletRequest;
 
 import com.rems.boot.core.LayResult;
+import com.rems.boot.utils.MD5Util;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -79,7 +80,8 @@ public class LoginController {
         UserEntity newUser = userService.add(
                 UserEntity.builder()
                         .username(username)
-                        .password(password)
+                        .password(MD5Util.generateSaltPassword(password))
+                        .face("face.gif")
                         .type(UserTypeEnum.USER).build());
         return Objects.nonNull(newUser) ? LayResult.success() : LayResult.error("注册失败");
     }
