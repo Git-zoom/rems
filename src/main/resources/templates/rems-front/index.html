@@ -17,7 +17,7 @@
 <div class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="#" clickMenu(1)>
                 <img src="/images/logo.png"
                      class="img--responsive img-thumbnail" style="width: 120px">
             </a>
@@ -30,12 +30,12 @@
         </div>
         <div class="navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#course">课程学习</a></li>
-                <li><a href="#popularNavEntity">热门导航</a></li>
-                <li><a href="#messageEntity">网站留言</a></li>
-                <li><a href="#pricing">套餐</a></li>
-                <li><a href="#contact">联系我们</a></li>
-                <li><a href="#" id="htgl">后台管理</a></li>
+                <li><a href="#course" onclick="clickMenu(2)">课程学习</a></li>
+                <li><a href="#popularNavEntity" onclick="clickMenu(3)">热门导航</a></li>
+                <li><a href="#messageEntity" onclick="clickMenu(4)">网站留言</a></li>
+                <li><a href="#pricing" onclick="clickMenu(5)">套餐</a></li>
+                <li><a href="#contact" onclick="clickMenu(6)">联系我们</a></li>
+                <li><a href="#" id="htgl" onclick="clickMenu(7)">后台管理</a></li>
                 <li><a href="/logout">退出登录</a></li>
             </ul>
         </div>
@@ -296,6 +296,21 @@
 </footer>
 </body>
 <script>
+
+    function clickMenu(id) {
+        $.ajax({
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            url: "/nav/click-update",
+            type: "post",
+            dataType: "json",
+            data: JSON.stringify({
+                id: id,
+            })
+        });
+    }
+
     $(function () {
         // 页面加载数据 MessageList
         rest();

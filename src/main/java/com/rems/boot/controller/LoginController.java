@@ -2,6 +2,7 @@ package com.rems.boot.controller;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -91,6 +92,9 @@ public class LoginController {
     public ModelAndView loginCheck(HttpServletRequest req) {
         // 数据预热
         List<PopularNavEntity> pnList = popularNavService.list(new PopularNavEntity());
+        // 给导航设置序号
+        AtomicInteger i = new AtomicInteger(1);
+        pnList.forEach(nav -> nav.setNavNum(String.valueOf(i.getAndIncrement())));
         List<CourseLearningEntity> cList = courseLearningService.list(new CourseLearningEntity());
         req.getSession().setAttribute("cList", cList);
         req.getSession().setAttribute("pnList", pnList);

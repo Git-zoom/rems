@@ -31,6 +31,21 @@ public class PopularNavServiceImpl extends ServiceImpl<PopularNavMapper, Popular
     }
 
     @Override
+    public boolean clickUpdate(Integer id) {
+        if (Objects.isNull(id)) {
+            throw new NullPointerException("#clickUpdate 导航ID不能为空!");
+        }
+        PopularNavEntity popularNavEntity = PopularNavEntity.builder().id(id).build();
+        PopularNavEntity oldNavEntity = get(popularNavEntity);
+        if (Objects.isNull(oldNavEntity)) {
+            throw new NullPointerException("#clickUpdate 导航不存在!");
+        }
+        oldNavEntity.setNavHeat(oldNavEntity.getNavHeat() + 1);
+        update(oldNavEntity);
+        return true;
+    }
+
+    @Override
     public PopularNavEntity add(@NotNull PopularNavEntity entity) {
         save(entity);
         return entity;
@@ -72,6 +87,7 @@ public class PopularNavServiceImpl extends ServiceImpl<PopularNavMapper, Popular
         if (Objects.nonNull(query.getNavName())) {
             queryWrapper.like(PopularNavEntity::getNavName, query.getNavName());
         }
+        queryWrapper.orderByDesc(PopularNavEntity::getNavHeat);
         return queryWrapper;
     }
 

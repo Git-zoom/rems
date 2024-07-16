@@ -14,4 +14,6 @@ public interface PopularNavService extends EntityQueryService<PopularNavEntity, 
 
     boolean deleteBatch(List<Long> ids);
 
+    boolean clickUpdate(Integer id);
+
 }

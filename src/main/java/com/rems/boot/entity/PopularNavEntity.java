@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -41,6 +43,8 @@ public class PopularNavEntity implements Serializable {
     /**
      * 导航热度
      */
+    @Max(value = 100)
+    @Min(value = 0)
     private int navHeat;
     /**
      * 创建时间

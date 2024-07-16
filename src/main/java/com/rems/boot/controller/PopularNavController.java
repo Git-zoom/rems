@@ -1,6 +1,7 @@
 package com.rems.boot.controller;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -56,9 +57,18 @@ public class PopularNavController {
         return popularNavService.get(PopularNavEntity.builder().id(id).build());
     }
 
+    @PostMapping("/click-update")
+    public LayResult<Void> clickUpdate(@RequestBody PopularNavEntity navEntity) {
+        popularNavService.clickUpdate(navEntity.getId());
+        return LayResult.success();
+    }
+
     @GetMapping(value = "/list")
     public LayResult<PopularNavEntity> list(@RequestParam("page") Integer pageIndex, @RequestParam("limit") Integer pageSize) {
         Page<PopularNavEntity> result = popularNavService.page(PopularNavEntity.builder().build(), new Page<>(pageIndex, pageSize));
+        // 给导航设置序号
+        AtomicInteger i = new AtomicInteger(1);
+        result.getRecords().forEach(nav -> nav.setNavNum(String.valueOf(i.getAndIncrement())));
         return LayResult.success(result.getRecords(), result.getTotal());
     }
 
