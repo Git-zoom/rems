@@ -1,68 +1,92 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>国内研学</title>
-    <link href="/css/rems/course-learning-01.css" rel="stylesheet">
+    <link href="/css/rems/course-learning-01.css" rel="stylesheet" />
 </head>
+
 <body>
-<div th:replace="rems-back/rems-core/top :: html"></div>
-<div class="content">
-    <div class="con_title">国内研学
-        <a class="btn btn-danger btn_back" href="/course-learning">返回</a></div>
-    <div class="con_img">
-        <img th:src="@{/images/cl_01.png}">
-    </div>
-    <div class="con_txt">
-        <h1 class="titleH1">执行力军魂，企业拓展训练</h1>
-        <div class="Introduce">
+    <div th:replace="rems-back/rems-core/top :: html"></div>
+    <div class="content">
+        <div class="con_title">
+            国内研学
+            <a class="btn btn-danger btn_back" href="/course-learning">返回</a>
+        </div>
+        <div class="con_img">
+            <img th:src="@{/images/cl_01.png}" />
+        </div>
+        <div class="con_txt">
+            <h1 class="titleH1">执行力军魂，企业拓展训练</h1>
+            <div class="Introduce">
+                <ul>
+                    <li>适合人群：企业全员</li>
+                    <li>游学城市：广州</li>
+                    <li>行程天数：3天2夜</li>
+                    <li>游学日期：全年</li>
+                </ul>
+            </div>
+            <div class="btn-buy" id="buyButton">
+                <a href="#">
+                    <button class="buy">预约报名</button>
+                </a>
+                <button class="add">加入收藏夹</button>
+            </div>
+        </div>
+        <div class="travelNav">
             <ul>
-                <li>适合人群：企业全员</li>
-                <li>游学城市：广州</li>
-                <li>行程天数：3天2夜</li>
-                <li>游学日期：全年</li>
+                <li><a href="#p1">课程简介</a></li>
+                <li><a href="#p2">课程特色</a></li>
+                <li><a href="#p3">课程目标</a></li>
+                <li><a href="#p4">课程安排</a></li>
+                <li style="width: 262px; border-right: none">
+                    <a href="">咨询电话：400-626-6226</a>
+                </li>
             </ul>
         </div>
-        <div class="btn-buy" id="buyButton">
-            <a href="#">
-                <button class="buy">预约报名</button>
-            </a>
-            <button class="add">加入收藏夹</button>
-        </div>
+        <p class="con_txt_title">
+            <span class="con_txt_span1">为什么要全员参训《执行力军魂模式》？</span>
+        </p>
+        <p class="con_txt_title">
+            <span
+                class="con_txt_span2">&nbsp;一个企业永远做两件事，第一是战略，第二是执行，那什么叫执行？执行就是把我们的战略目标不折不扣的实现，让我们的团队在文化、信仰、价值观、愿景上与公司保持高度的统一，执行只有上下一致，才能保证持久稳定发展。什么是企业的执行力？方向盘是战略的话，油门就是执行。而战略是方向，执行力就是引爆器。&nbsp;</span>
+        </p>
+        <p class="con_txt_title">
+            <span class="con_txt_span1">《执行力军魂模式》的价值：</span>
+        </p>
+        <p class="con_txt_title">
+            <span
+                class="con_txt_span2">&nbsp;《执行力军魂模式》为你揭秘如何通过团队执行力打造创造企业的持续发展这是一场颠覆传统训练模式的课程，采用理论与实践结合、理论与训练结合、训练与实战结合的讲训模式，直击企业要害、句句摄人心魄的真正实战、实效的执行力训练场！中国企业真正执行力的打造，必须完成让企业每一个士兵找到兵本位，实现个人在集体目标中的价值体现，从而实现团队的执行力。企业的关键是“做大”“做强”做大是由战略决定的，做强是由团队执行力决定的。&nbsp;</span>
+        </p>
+        <p class="con_txt_title">
+            <span class="con_txt_span1">《执行力军魂模式》的目标：</span>
+        </p>
+        <p class="con_txt_title">
+            <span class="con_txt_span2">&nbsp; 1.了解执行危机的3大来源，挖出企业执行不力的根本原因；<br /></span>
+        </p>
 
+        <p class="con_txt_title">
+            <span class="con_txt_span2">&nbsp;2.系统提升成员执行思维、执行意识、执行技能和执行水平；<br /></span>
+        </p>
+
+        <p class="con_txt_title">
+            <span class="con_txt_span2">&nbsp;3.提升团队成员积极性、主动性、成就高执行、高协作团队；<br /></span>
+        </p>
+
+        <p class="con_txt_title">
+            <span class="con_txt_span2">&nbsp;4.掌握现代企业执行的核心流程，有效使用执行的工具方法。
+                &nbsp;</span>
+        </p>
+        <p class="con_txt_title">
+            <span class="con_txt_span1">《执行力军魂模式》解决问题：</span>
+        </p>
+        <p class="con_txt_title">
+            <span class="con_txt_span2">&nbsp;
+                锁定责任人，人人有责任，每一个人明确自己责任。认清成果的重要性，不折不扣达成成果。始终保持危机感，增强团队对实现目标的动力。&nbsp;</span>
+        </p>
     </div>
-    <div class="travelNav">
-        <ul>
-            <li><a href="#p1">课程简介</a></li>
-            <li><a href="#p2">课程特色</a></li>
-            <li><a href="#p3">课程目标</a></li>
-            <li><a href="#p4">课程安排</a></li>
-            <li style="width:262px; border-right:none;"><a href="">咨询电话：400-626-6226</a></li>
-        </ul>
-    </div>
-    <p class="con_txt_title"><span class="con_txt_span1">为什么要全员参训《执行力军魂模式》？</span></p>
-    <p class="con_txt_title"><span class="con_txt_span2">&nbsp;一个企业永远做两件事，第一是战略，第二是执行，那什么叫执行？执行就是把我们的战略目标不折不扣的实现，让我们的团队在文化、信仰、价值观、愿景上与公司保持高度的统一，执行只有上下一致，才能保证持久稳定发展。什么是企业的执行力？方向盘是战略的话，油门就是执行。而战略是方向，执行力就是引爆器。&nbsp;</span>
-    </p>
-    <p class="con_txt_title"><span class="con_txt_span1">《执行力军魂模式》的价值：</span></p>
-    <p class="con_txt_title"><span class="con_txt_span2">&nbsp;《执行力军魂模式》为你揭秘如何通过团队执行力打造创造企业的持续发展这是一场颠覆传统训练模式的课程，采用理论与实践结合、理论与训练结合、训练与实战结合的讲训模式，直击企业要害、句句摄人心魄的真正实战、实效的执行力训练场！中国企业真正执行力的打造，必须完成让企业每一个士兵找到兵本位，实现个人在集体目标中的价值体现，从而实现团队的执行力。企业的关键是“做大”“做强”做大是由战略决定的，做强是由团队执行力决定的。&nbsp;</span>
-    </p>
-    <p class="con_txt_title"><span class="con_txt_span1">《执行力军魂模式》的目标：</span></p>
-    <p class="con_txt_title"><span class="con_txt_span2">&nbsp; 1.了解执行危机的3大来源，挖出企业执行不力的根本原因；<br></span>
-    </p>
-
-    <p class="con_txt_title"><span
-            class="con_txt_span2">&nbsp;2.系统提升成员执行思维、执行意识、执行技能和执行水平；<br></span></p>
-
-    <p class="con_txt_title"><span
-            class="con_txt_span2">&nbsp;3.提升团队成员积极性、主动性、成就高执行、高协作团队；<br></span></p>
-
-    <p class="con_txt_title"><span class="con_txt_span2">&nbsp;4.掌握现代企业执行的核心流程，有效使用执行的工具方法。 &nbsp;</span>
-    </p>
-    <p class="con_txt_title"><span class="con_txt_span1">《执行力军魂模式》解决问题：</span></p>
-    <p class="con_txt_title"><span class="con_txt_span2">&nbsp; 锁定责任人，人人有责任，每一个人明确自己责任。认清成果的重要性，不折不扣达成成果。始终保持危机感，增强团队对实现目标的动力。&nbsp;</span>
-    </p>
-
-</div>
-<footer>
-    <p>RedEMS Made By <a href="#">红色教育</a></p>
-</footer>
+    <footer>
+        <p>RedEMS Made By <a href="#">红色教育</a></p>
+    </footer>
 </body>
+
 </html>

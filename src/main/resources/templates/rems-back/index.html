@@ -1,170 +1,189 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
     <title>后台管理</title>
-    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css}">
-    <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
-    <link rel="stylesheet" th:href="@{/css/rems/back-index.css}">
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" />
+    <link rel="stylesheet" th:href="@{/css/rems/back-index.css}" />
     <script type="text/javascript" th:src="@{/jquery/jquery-3.7.1.js}"></script>
     <script type="text/javascript" th:src="@{/layui/layui.js}"></script>
     <script th:src="@{/js/utils/lay-msg.js}"></script>
 </head>
-<body>
-<div class="layui-layout layui-layout-admin">
-    <div class="layui-header">
-        <div class="layui-logo layui-hide-xs layui-bg-black">后台管理系统</div>
-        <!-- 右上角用户个人中心 -->
-        <ul class="layui-nav layui-layout-right">
-            <li class="layui-nav-item layui-hide layui-show-md-inline-block">
-                <a href="javascript:">
-                    <img th:src="@{'/images/'+${session.user.avatar}}" style="border-radius: 50%">
-                    [[${session.user.nickname} ]]
-                </a>
-                <dl class="layui-nav-child">
-                    <dd><a href="">个人中心</a></dd>
-                    <dd><a href="">设置</a></dd>
-                    <dd><a href="/front-index">退出</a></dd>
-                </dl>
-            </li>
-            <li class="layui-nav-item" lay-header-event="menuRight" lay-unselect>
-                <a href="javascript:;">
-                    <i class="layui-icon layui-icon-more-vertical"></i>
-                </a>
-            </li>
-        </ul>
-    </div>
 
-    <div class="layui-side layui-bg-black">
-        <div class="layui-side-scroll">
-            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-            <ul class="layui-nav layui-nav-tree" lay-filter="test">
-                <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">账户管理</a>
+<body>
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <div class="layui-logo layui-hide-xs layui-bg-black">后台管理系统</div>
+            <!-- 右上角用户个人中心 -->
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item layui-hide layui-show-md-inline-block">
+                    <a href="javascript:">
+                        <img th:src="@{'/images/'+${session.user.avatar}}" style="border-radius: 50%" />
+                        [[${session.user.nickname} ]]
+                    </a>
                     <dl class="layui-nav-child">
-                        <dd class="leftdaohang" data-url="/rems-user-manage-list" mytitle="普通用户管理"><a>&nbsp;&nbsp;&nbsp;&nbsp;普通用户管理</a>
-                        </dd>
-                        <dd class="leftdaohang" data-url="/iframe" mytitle="exploration"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;管理员账户</a>
-                        </dd>
+                        <dd><a href="">个人中心</a></dd>
+                        <dd><a href="">设置</a></dd>
+                        <dd><a href="/front-index">退出</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item layui-nav-itemed">
-                    <a href="javascript:;">资源管理</a>
-                    <dl class="layui-nav-child">
-                        <dd class="leftdaohang" data-url="/rems-popular-nav-manage-list" mytitle="热门导航"><a
-                                href="javascript:;">&nbsp;&nbsp;&nbsp;&nbsp;热门导航</a></dd>
-                        <dd class="leftdaohang" data-url="/rems-question-manage-list" mytitle="问题查询"><a
-                                href="javascript:;">&nbsp;&nbsp;&nbsp;&nbsp;问题查询</a></dd>
-                        <dd class="leftdaohang" data-url="/rems-course-learning-manage-list" mytitle="课程学习"><a>&nbsp;&nbsp;&nbsp;&nbsp;课程学习</a>
-                        </dd>
-                        <dd class="leftdaohang" data-url="/rems-message-manage-list" mytitle="网站留言"><a>&nbsp;&nbsp;&nbsp;&nbsp;网站留言</a>
-                        </dd>
-                    </dl>
+                <li class="layui-nav-item" lay-header-event="menuRight" lay-unselect>
+                    <a href="javascript:;">
+                        <i class="layui-icon layui-icon-more-vertical"></i>
+                    </a>
                 </li>
-                <dd class="leftdaohang" data-url="/iframe" mytitle="exploration">
-                    <li class="layui-nav-item"><a href="javascript:;">系统管理</a></li>
-                </dd>
-                <dd class="leftdaohang" data-url="/iframe" mytitle="exploration">
-                    <li class="layui-nav-item" data-url="/iframe"><a>权限管理</a></li>
-                </dd>
             </ul>
         </div>
-    </div>
 
-    <div class="layui-body">
-        <!--tabs标签-->
-        <div class="layui-tab layui-tab-card" lay-filter="demo" lay-allowclose="true">
-            <ul class="layui-tab-title">
-            </ul>
-            <div class="layui-tab-content">
-                <div style="width: 100%;height: 837px" id="MyIframe">
-                    <span style="height: 40px;width: 550px;margin: 0 auto; padding: 250px 0 0;font-size: 50px;display: block;color:#808080; ">欢迎进入后台管理系统！</span>
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+                <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a class="" href="javascript:;">账户管理</a>
+                        <dl class="layui-nav-child">
+                            <dd class="leftdaohang" data-url="/rems-user-manage-list" mytitle="普通用户管理">
+                                <a>&nbsp;&nbsp;&nbsp;&nbsp;普通用户管理</a>
+                            </dd>
+                            <dd class="leftdaohang" data-url="/iframe" mytitle="exploration">
+                                <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;管理员账户</a>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="javascript:;">资源管理</a>
+                        <dl class="layui-nav-child">
+                            <dd class="leftdaohang" data-url="/rems-popular-nav-manage-list" mytitle="热门导航">
+                                <a href="javascript:;">&nbsp;&nbsp;&nbsp;&nbsp;热门导航</a>
+                            </dd>
+                            <dd class="leftdaohang" data-url="/rems-question-manage-list" mytitle="问题查询">
+                                <a href="javascript:;">&nbsp;&nbsp;&nbsp;&nbsp;问题查询</a>
+                            </dd>
+                            <dd class="leftdaohang" data-url="/rems-course-learning-manage-list" mytitle="课程学习">
+                                <a>&nbsp;&nbsp;&nbsp;&nbsp;课程学习</a>
+                            </dd>
+                            <dd class="leftdaohang" data-url="/rems-message-manage-list" mytitle="网站留言">
+                                <a>&nbsp;&nbsp;&nbsp;&nbsp;网站留言</a>
+                            </dd>
+                        </dl>
+                    </li>
+                    <dd class="leftdaohang" data-url="/iframe" mytitle="exploration">
+                        <li class="layui-nav-item">
+                            <a href="javascript:;">系统管理</a>
+                        </li>
+                    </dd>
+                    <dd class="leftdaohang" data-url="/iframe" mytitle="exploration">
+                        <li class="layui-nav-item" data-url="/iframe"><a>权限管理</a></li>
+                    </dd>
+                </ul>
+            </div>
+        </div>
+
+        <div class="layui-body">
+            <!--tabs标签-->
+            <div class="layui-tab layui-tab-card" lay-filter="demo" lay-allowclose="true">
+                <ul class="layui-tab-title"></ul>
+                <div class="layui-tab-content">
+                    <div style="width: 100%; height: 837px" id="MyIframe">
+                        <span style="
+                  height: 40px;
+                  width: 550px;
+                  margin: 0 auto;
+                  padding: 250px 0 0;
+                  font-size: 50px;
+                  display: block;
+                  color: #808080;
+                ">欢迎进入后台管理系统！</span>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <div class="layui-footer">
+            <!-- 底部固定区域 -->
+            <span class="footerText">Copyright©2024-2025 &nbsp;&nbsp;Red Educate Website All Rights
+                Reserved 红色教育网站 版权所有</span>
+        </div>
     </div>
 
-    <div class="layui-footer">
-        <!-- 底部固定区域 -->
-        <span class="footerText">Copyright©2024-2025 &nbsp;&nbsp;Red Educate Website All Rights Reserved 红色教育网站
-            版权所有</span>
-    </div>
-</div>
-
-<script>
-    // JS
-    layui.use(['element', 'layer', 'util'], function () {
-        let element = layui.element
-            , layer = layui.layer
-            , util = layui.util
-            , $ = layui.$;
-        // 头部事件
-        util.event('lay-header-event', {
-            // 左侧菜单事件
-            menuLeft: function () {
-                successMsg("展开左侧菜单的操作")
-            }
-            , menuRight: function () {
-                layer.open({
-                    type: 1
-                    , content: '<div style="padding: 15px;">处理右侧面板的操作</div>'
-                    , area: ['260px', '100%']
-                    , offset: 'rt' //右上角
-                    , anim: 5
-                    , shadeClose: true
-                });
-            }
-        });
-
-    });
-
-
-    layui.use('element', function () {
-        let $ = layui.jquery
-            , element = layui.element;
-        // 触发事件
-        let active = {
-            tabAdd: function () {
-                $('#MyIframe').remove();
-                // 新增一个Tab项
-                let htmlurl = $(this).attr('data-url');
-                let mytitle = $(this).attr('mytitle');
-                // 先判断是否已经有了tab
-                let arrayObj = new Array();
-                $(".layui-tab-title").find('li').each(function () {
-                    let y = $(this).attr("lay-id");
-                    arrayObj.push(y);
-                });
-                let have = $.inArray(mytitle, arrayObj);  //返回 3,
-                if (have >= 0) {
-                    // tab已有标签
-                    element.tabChange('demo', mytitle); //切换到当前点击的页面
-                } else {
-                    // 没有相同tab
-                    element.tabAdd('demo', {
-                        title: mytitle,
-                        content: '<iframe style="width: 100%;height: 100%;" scrolling="no" src=' + htmlurl + ' ></iframe>',
-                        id: mytitle // 实际使用一般是规定好的id，这里以时间戳模拟下
+    <script>
+        // JS
+        layui.use(['element', 'layer', 'util'], function () {
+            let element = layui.element,
+                layer = layui.layer,
+                util = layui.util,
+                $ = layui.$
+            // 头部事件
+            util.event('lay-header-event', {
+                // 左侧菜单事件
+                menuLeft: function () {
+                    successMsg('展开左侧菜单的操作')
+                },
+                menuRight: function () {
+                    layer.open({
+                        type: 1,
+                        content: '<div style="padding: 15px;">处理右侧面板的操作</div>',
+                        area: ['260px', '100%'],
+                        offset: 'rt', //右上角
+                        anim: 5,
+                        shadeClose: true
                     })
-                    FrameWH();
-                    element.tabChange('demo', mytitle); // 切换到当前点击的页面
+                }
+            })
+        })
+
+        layui.use('element', function () {
+            let $ = layui.jquery,
+                element = layui.element
+            // 触发事件
+            let active = {
+                tabAdd: function () {
+                    $('#MyIframe').remove()
+                    // 新增一个Tab项
+                    let htmlurl = $(this).attr('data-url')
+                    let mytitle = $(this).attr('mytitle')
+                    // 先判断是否已经有了tab
+                    let arrayObj = new Array()
+                    $('.layui-tab-title')
+                        .find('li')
+                        .each(function () {
+                            let y = $(this).attr('lay-id')
+                            arrayObj.push(y)
+                        })
+                    let have = $.inArray(mytitle, arrayObj) //返回 3,
+                    if (have >= 0) {
+                        // tab已有标签
+                        element.tabChange('demo', mytitle) //切换到当前点击的页面
+                    } else {
+                        // 没有相同tab
+                        element.tabAdd('demo', {
+                            title: mytitle,
+                            content:
+                                '<iframe style="width: 100%;height: 100%;" scrolling="no" src=' +
+                                htmlurl +
+                                ' ></iframe>',
+                            id: mytitle // 实际使用一般是规定好的id，这里以时间戳模拟下
+                        })
+                        FrameWH()
+                        element.tabChange('demo', mytitle) // 切换到当前点击的页面
+                    }
                 }
             }
+            $('.leftdaohang').click(function () {
+                let type = 'tabAdd'
+                let othis = $(this)
+                active[type] ? active[type].call(this, othis) : ''
+            })
 
-        };
-        $(".leftdaohang").click(function () {
-            let type = "tabAdd";
-            let othis = $(this);
-            active[type] ? active[type].call(this, othis) : '';
-        });
-
-        function FrameWH() {
-            let h = $(window).height() - 147;
-            $("iframe").css("height", h + "px");
-        }
-
-    });
-</script>
+            function FrameWH() {
+                let h = $(window).height() - 147
+                $('iframe').css('height', h + 'px')
+            }
+        })
+    </script>
 </body>
+
 </html>

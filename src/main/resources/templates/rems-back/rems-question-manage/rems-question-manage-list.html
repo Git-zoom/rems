@@ -1,40 +1,56 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>问题查询管理</title>
-    <meta content="webkit" name="renderer">
-    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
-    <link media="all" rel="stylesheet" th:href="@{/layui/css/layui.css}">
+    <meta content="webkit" name="renderer" />
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport" />
+    <link media="all" rel="stylesheet" th:href="@{/layui/css/layui.css}" />
     <script th:src="@{/layui/layui.js}"></script>
     <script th:src="@{/js/rems/red-htgl-list.js}"></script>
     <script th:src="@{/js/utils/date-util.js}"></script>
 </head>
-<body>
-<table id="redDataTable" lay-filter="tabComponent"></table>
-<script id="barDemo" type="text/html">
-    <a class="layui-btn layui-btn-primary layui-btn-sm" lay-event="detail">查看</a>
-    <a class="layui-btn layui-btn-sm" lay-event="more">更多 <i class="layui-icon layui-icon-down"></i></a>
-</script>
 
-<script>
-    let apiUrl = "/question";
-    let cols = [
-        [ // 表头
-            {type: 'checkbox', fixed: 'left'}
-            , {field: 'id', title: 'ID', width: '10%', sort: true, fixed: 'left'}
-            , {field: 'quesTitle', title: '问题标题', width: '20%', sort: true}
-            , {field: 'quesAuthor', title: '文章作者', width: '20%'}
-            , {
-            field: 'quesDate', title: '发表日期', width: '10%',
-            templet: '<div> {{ timestampToYMDHMS(d.quesDate) }} </div>'
-        }
-            , {field: 'quesSource', title: '文章来源', width: '20%'}
-            , {fixed: 'right', title: '操作', width: '16.5%', align: 'center', toolbar: '#barDemo'}
+<body>
+    <table id="redDataTable" lay-filter="tabComponent"></table>
+    <script id="barDemo" type="text/html">
+      <a class="layui-btn layui-btn-primary layui-btn-sm" lay-event="detail"
+        >查看</a
+      >
+      <a class="layui-btn layui-btn-sm" lay-event="more"
+        >更多 <i class="layui-icon layui-icon-down"></i
+      ></a>
+    </script>
+
+    <script>
+        let apiUrl = '/question'
+        let cols = [
+            [
+                // 表头
+                { type: 'checkbox', fixed: 'left' },
+                { field: 'id', title: 'ID', width: '10%', sort: true, fixed: 'left' },
+                { field: 'quesTitle', title: '问题标题', width: '20%', sort: true },
+                { field: 'quesAuthor', title: '文章作者', width: '20%' },
+                {
+                    field: 'quesDate',
+                    title: '发表日期',
+                    width: '10%',
+                    templet: '<div> {{ timestampToYMDHMS(d.quesDate) }} </div>'
+                },
+                { field: 'quesSource', title: '文章来源', width: '20%' },
+                {
+                    fixed: 'right',
+                    title: '操作',
+                    width: '16.5%',
+                    align: 'center',
+                    toolbar: '#barDemo'
+                }
+            ]
         ]
-    ];
-    initPage("redDataTable", cols);
-</script>
+        initPage('redDataTable', cols)
+    </script>
 </body>
+
 </html>

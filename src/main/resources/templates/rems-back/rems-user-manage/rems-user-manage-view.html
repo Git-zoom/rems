@@ -1,128 +1,128 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>查看用户</title>
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all">
-    <link media="all" rel="stylesheet" th:href="@{/css/rems/head-image.css}">
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all" />
+    <link media="all" rel="stylesheet" th:href="@{/css/rems/head-image.css}" />
     <script th:src="@{/layui/layui.js}"></script>
     <script th:src="@{/js/rems/red-htgl-view.js}"></script>
 </head>
+
 <body onload="view('/user')">
-<div id="content">
-    <div id="content_header"></div>
-    <fieldset class="layui-elem-field layui-field-title">
-        <legend>用户基本信息</legend>
-    </fieldset>
-    <form class="layui-form layui-form-pane" action="" lay-filter="user-view-filter">
-        <div class="layui-form-item layui-row">
-            <div class="layui-col-xs6">
-                <label class="layui-form-label">用户名</label>
-                <div class="layui-input-block">
-                    <input type="text" id="username" name="username" class="layui-input" autocomplete="off"
-                           readonly>
+    <div id="content">
+        <div id="content_header"></div>
+        <fieldset class="layui-elem-field layui-field-title">
+            <legend>用户基本信息</legend>
+        </fieldset>
+        <form class="layui-form layui-form-pane" action="" lay-filter="user-view-filter">
+            <div class="layui-form-item layui-row">
+                <div class="layui-col-xs6">
+                    <label class="layui-form-label">用户名</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="username" name="username" class="layui-input" autocomplete="off"
+                            readonly />
+                    </div>
+                </div>
+                <div class="layui-col-xs6">
+                    <label class="layui-form-label">昵称</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="nickname" name="nickname" class="layui-input" autocomplete="off"
+                            readonly />
+                    </div>
                 </div>
             </div>
-            <div class="layui-col-xs6">
-                <label class="layui-form-label">昵称</label>
-                <div class="layui-input-block">
-                    <input type="text" id="nickname" name="nickname" class="layui-input" autocomplete="off"
-                           readonly>
+            <div class="layui-form-item layui-row">
+                <div class="layui-col-xs6">
+                    <label class="layui-form-label">密码</label>
+                    <div class="layui-input-block">
+                        <input type="password" id="password" name="password" class="layui-input" autocomplete="off"
+                            readonly />
+                    </div>
+                </div>
+                <div class="layui-col-xs6">
+                    <label class="layui-form-label">性别</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="gender" value="MALE" title="男" disabled />
+                        <input type="radio" name="gender" value="FEMALE" title="女" disabled />
+                        <input type="radio" name="gender" value="OTHER" title="其他" disabled />
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="layui-form-item layui-row">
-            <div class="layui-col-xs6">
-                <label class="layui-form-label">密码</label>
-                <div class="layui-input-block">
-                    <input type="password" id="password" name="password" class="layui-input" autocomplete="off"
-                           readonly
-                    >
+            <div class="layui-form-item layui-row">
+                <div class="layui-col-xs6">
+                    <label class="layui-form-label">用户头像</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="avatar" name="avatar" autocomplete="off" class="layui-input path_face"
+                            readonly />
+                    </div>
+                </div>
+                <div class="layui-col-xs6">
+                    <span class="face"><img src="/images/face1.gif" /><img src="/images/face2.gif" /><img
+                            src="/images/face3.gif" /><img src="/images/face4.gif" /><img src="/images/face5.gif" /><img
+                            src="/images/face6.gif" /><img src="/images/face7.gif" /><img src="/images/face8.gif" />
+                    </span>
                 </div>
             </div>
-            <div class="layui-col-xs6">
-                <label class="layui-form-label">性别</label>
-                <div class="layui-input-block">
-                    <input type="radio" name="gender" value="MALE" title="男" disabled>
-                    <input type="radio" name="gender" value="FEMALE" title="女" disabled>
-                    <input type="radio" name="gender" value="OTHER" title="其他" disabled>
+            <div class="layui-form-item layui-row">
+                <div class="layui-col-xs6">
+                    <label class="layui-form-label">邮箱</label>
+                    <div class="layui-input-block">
+                        <input type="email" id="email" name="email" class="layui-input" autocomplete="off" readonly />
+                    </div>
+                </div>
+                <div class="layui-col-xs6">
+                    <label class="layui-form-label">手机号</label>
+                    <div class="layui-input-block">
+                        <input type="number" id="mobile" name="mobile" class="layui-input" autocomplete="off"
+                            readonly />
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="layui-form-item layui-row">
-            <div class="layui-col-xs6">
-                <label class="layui-form-label">用户头像</label>
-                <div class="layui-input-block">
-                    <input type="text" id="avatar" name="avatar" autocomplete="off" class="layui-input path_face" readonly>
+            <div class="layui-form-item layui-row">
+                <div class="layui-col-xs6">
+                    <label class="layui-form-label">状态</label>
+                    <div class="layui-input-block">
+                        <select name="status" id="status">
+                            <option value="ACTIVE" disabled>激活</option>
+                            <option value="INACTIVE" disabled>未激活</option>
+                            <option value="PENDING" disabled>待审核</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-col-xs6">
+                    <label class="layui-form-label">角色</label>
+                    <div class="layui-input-block">
+                        <select name="role" id="role" lay-filter="role">
+                            <option value="管理员" disabled>系统管理员</option>
+                            <option value="普通用户" disabled>普通用户</option>
+                            <option value="学生" disabled>学生</option>
+                            <option value="教师" disabled>教师</option>
+                        </select>
+                    </div>
                 </div>
             </div>
-            <div class="layui-col-xs6">
-                <span class="face"><img src="/images/face1.gif"/><img
-                        src="/images/face2.gif"/><img
-                        src="/images/face3.gif"/><img src="/images/face4.gif"/><img
-                        src="/images/face5.gif"/><img
-                        src="/images/face6.gif"/><img src="/images/face7.gif"/><img
-                        src="/images/face8.gif"/>
-                        </span>
-            </div>
-        </div>
-        <div class="layui-form-item layui-row">
-            <div class="layui-col-xs6">
-                <label class="layui-form-label">邮箱</label>
-                <div class="layui-input-block">
-                    <input type="email" id="email" name="email" class="layui-input" autocomplete="off"
-                           readonly
-                    >
+            <div class="layui-form-item layui-row">
+                <div class="layui-col-xs12">
+                    <label class="layui-form-label">备注</label>
+                    <div class="layui-input-block">
+                        <textarea id="remark" name="remark" placeholder="请输入备注" class="layui-textarea"
+                            readonly></textarea>
+                    </div>
                 </div>
             </div>
-            <div class="layui-col-xs6">
-                <label class="layui-form-label">手机号</label>
-                <div class="layui-input-block">
-                    <input type="number" id="mobile" name="mobile" class="layui-input" autocomplete="off"
-                           readonly
-                    >
-                </div>
+            <div class="layui-form-item" style="text-align: center">
+                <button class="layui-btn" lay-submit="" lay-filter="demo2" onclick="script: window.close();">
+                    退出
+                </button>
             </div>
-        </div>
-        <div class="layui-form-item layui-row">
-            <div class="layui-col-xs6">
-                <label class="layui-form-label">状态</label>
-                <div class="layui-input-block">
-                    <select name="status" id="status">
-                        <option value="ACTIVE" disabled>激活</option>
-                        <option value="INACTIVE" disabled>未激活</option>
-                        <option value="PENDING" disabled>待审核</option>
-                    </select>
-                </div>
-            </div>
-            <div class="layui-col-xs6">
-                <label class="layui-form-label">角色</label>
-                <div class="layui-input-block">
-                    <select name="role" id="role" lay-filter="role">
-                        <option value="管理员" disabled>系统管理员</option>
-                        <option value="普通用户" disabled>普通用户</option>
-                        <option value="学生" disabled>学生</option>
-                        <option value="教师" disabled>教师</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="layui-form-item layui-row">
-            <div class="layui-col-xs12">
-                <label class="layui-form-label">备注</label>
-                <div class="layui-input-block">
-                    <textarea id="remark" name="remark" placeholder="请输入备注" class="layui-textarea" readonly></textarea>
-                </div>
-            </div>
-        </div>
-        <div class="layui-form-item" style="text-align: center">
-            <button class="layui-btn" lay-submit="" lay-filter="demo2" onclick="script: window.close();">退出</button>
-        </div>
-    </form>
-    <input hidden="hidden" id="recordId" th:value="${userId}"/>
-</div>
+        </form>
+        <input hidden="hidden" id="recordId" th:value="${userId}" />
+    </div>
 </body>
+
 </html>

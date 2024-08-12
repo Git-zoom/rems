@@ -1,91 +1,120 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>普通用户管理</title>
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all">
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all" />
     <script th:src="@{/layui/layui.js}"></script>
     <script th:src="@{/js/rems/red-htgl-list.js}"></script>
     <script th:src="@{/js/utils/lay-msg.js}"></script>
 </head>
+
 <body>
-<table id="redDataTable" lay-filter="tabComponent"></table>
-<script type="text/html" id="barComponent">
-    <a class="layui-btn layui-btn-primary layui-btn-sm" lay-event="detail">查看</a>
-    <a class="layui-btn layui-btn-sm" lay-event="more">更多 <i class="layui-icon layui-icon-down"></i></a>
-</script>
-<script type="text/html" id="ID-table-demo-templet-switch">
-    <input type="checkbox" name="status" title="开启|关闭" value="{{=d.id}}" lay-skin="switch"
-           lay-filter="demo-templet-status" {{=d.status== "ACTIVE" ? "checked" : "" }}>
-</script>
+    <table id="redDataTable" lay-filter="tabComponent"></table>
+    <script type="text/html" id="barComponent">
+      <a class="layui-btn layui-btn-primary layui-btn-sm" lay-event="detail"
+        >查看</a
+      >
+      <a class="layui-btn layui-btn-sm" lay-event="more"
+        >更多 <i class="layui-icon layui-icon-down"></i
+      ></a>
+    </script>
+    <script type="text/html" id="ID-table-demo-templet-switch">
+      <input type="checkbox" name="status" title="开启|关闭" value="{{=d.id}}"
+      lay-skin="switch" lay-filter="demo-templet-status" {{=d.status== "ACTIVE"
+      ? "checked" : "" }}>
+    </script>
 
-<script>
-    let apiUrl = "/user";
-    let cols = [
-        [ // 表头
-            {type: 'checkbox', fixed: 'left', width: '5%', height: '5%'},
-            {field: 'id', title: '用户ID', width: '5%', sort: false},
-            {
-                field: 'avatar',
-                title: '用户头像',
-                width: '8%',
-                templet: '<div><img style="width: 40px;height: 40px" src="/images/{{=d.avatar}}"/></div>',
-                style: 'margin:0;padding:3px 5px;'
-            },
-            {field: 'username', title: '用户名称', width: '12%', sort: true},
-            {field: 'gender', title: '性别', width: '5%', templet: function(d){
-                    if(d.gender === 'MALE'){
-                        return '<span style="color: blue">♂</span>';
-                    } if(d.gender === 'FEMALE'){
-                        return '<span style="color: pink">♂</span>';
-                    } else {
-                        return '<span style="color: #ccc">其他</span>';
-                    }
-                }},
-            {field: 'nickname', title: '用户昵称', width: '10%', sort: false},
-            {field: 'password',type: 'password', title: '用户密码', width: '12%'},
-            {field: 'role', title: '角色', width: '10%'},
-            {title: '状态', width: '10%', templet: '#ID-table-demo-templet-switch'},
-            {field: 'createTime', title: '创建时间', width: '10%', sort: true},
-            {title: '操作', width: '10%', align: 'center', toolbar: '#barComponent'}
-        ]
-    ];
-    initPage("redDataTable", cols);
-
-
-    layui.use(['table', 'layer'], function () {
-        form = layui.form;
-        // 用户管理 - 状态开关操作
-        form.on('switch(demo-templet-status)', function(obj){
-            console.log(obj);
-            let status = obj.elem.checked ? "ACTIVE" : "INACTIVE";
-            $.ajax({
-                type: "post",
-                url: apiUrl + "/update",
-                headers: {
-                    'Content-Type': 'application/json'
+    <script>
+        let apiUrl = '/user'
+        let cols = [
+            [
+                // 表头
+                { type: 'checkbox', fixed: 'left', width: '5%', height: '5%' },
+                { field: 'id', title: '用户ID', width: '5%', sort: false },
+                {
+                    field: 'avatar',
+                    title: '用户头像',
+                    width: '8%',
+                    templet:
+                        '<div><img style="width: 40px;height: 40px" src="/images/{{=d.avatar}}"/></div>',
+                    style: 'margin:0;padding:3px 5px;'
                 },
-                dataType: "json",
-                data: JSON.stringify({
-                    id: this.value,
-                    status: status
-                }),
-                success: function (data) {
-                    if (data != null) {
-                        successMsg("更新成功！");
-                    } else {
-                        errorMsg("更新失败！");
+                { field: 'username', title: '用户名称', width: '12%', sort: true },
+                {
+                    field: 'gender',
+                    title: '性别',
+                    width: '5%',
+                    templet: function (d) {
+                        if (d.gender === 'MALE') {
+                            return '<span style="color: blue">♂</span>'
+                        }
+                        if (d.gender === 'FEMALE') {
+                            return '<span style="color: pink">♂</span>'
+                        } else {
+                            return '<span style="color: #ccc">其他</span>'
+                        }
                     }
                 },
-                error: function () {
-                    errorMsg("更新失败！");
+                { field: 'nickname', title: '用户昵称', width: '10%', sort: false },
+                {
+                    field: 'password',
+                    type: 'password',
+                    title: '用户密码',
+                    width: '12%'
+                },
+                { field: 'role', title: '角色', width: '10%' },
+                {
+                    title: '状态',
+                    width: '10%',
+                    templet: '#ID-table-demo-templet-switch'
+                },
+                { field: 'createTime', title: '创建时间', width: '10%', sort: true },
+                {
+                    title: '操作',
+                    width: '10%',
+                    align: 'center',
+                    toolbar: '#barComponent'
                 }
-            });
-        });
-    });
-</script>
+            ]
+        ]
+        initPage('redDataTable', cols)
+
+        layui.use(['table', 'layer'], function () {
+            form = layui.form
+            // 用户管理 - 状态开关操作
+            form.on('switch(demo-templet-status)', function (obj) {
+                console.log(obj)
+                let status = obj.elem.checked ? 'ACTIVE' : 'INACTIVE'
+                $.ajax({
+                    type: 'post',
+                    url: apiUrl + '/update',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    dataType: 'json',
+                    data: JSON.stringify({
+                        id: this.value,
+                        status: status
+                    }),
+                    success: function (data) {
+                        if (data != null) {
+                            successMsg('更新成功！')
+                        } else {
+                            errorMsg('更新失败！')
+                        }
+                    },
+                    error: function () {
+                        errorMsg('更新失败！')
+                    }
+                })
+            })
+        })
+    </script>
 </body>
+
 </html>
