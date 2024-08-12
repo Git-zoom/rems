@@ -1,13 +1,9 @@
 function view(apiUrl) {
-    layui.use(['form', 'laydate'], function () {
-        let layer = layui.layer, laydate = layui.laydate;
+    layui.use(['form'], function () {
+        let layer = layui.layer;
         let form = layui.form;
         let $ = layui.jquery;
         let recordId = $("#recordId").val();
-        // 日期
-        laydate.render({
-            elem: '#date'
-        });
 
         // 回显数据
         $.ajax({

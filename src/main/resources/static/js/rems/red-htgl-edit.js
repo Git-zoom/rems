@@ -1,14 +1,7 @@
 function edit(apiUrl, verifys) {
-    layui.use(['form', 'laydate'], function () {
-        let form = layui.form, layer = layui.layer, laydate = layui.laydate;
+    layui.use(['form'], function () {
+        let form = layui.form, layer = layui.layer;
         let $ = layui.jquery;
-        // 日期
-        laydate.render({
-            elem: '#quesDate'
-        });
-        laydate.render({
-            elem: '#msgDate'
-        });
 
         // 表单校验
         form.verify(verifys);

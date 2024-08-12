@@ -23,7 +23,7 @@
                 <label class="layui-form-label">用户名</label>
                 <div class="layui-input-block">
                     <input type="text" id="recordId" name="id" hidden="hidden" th:value="${userId}"/>
-                    <input type="text" id="username" name="username" class="layui-input" autocomplete="off"
+                    <input type="text" id="username" name="username" ay-verify="required" class="layui-input" autocomplete="off"
                            placeholder="请输入用户名 例如: zhangsan">
                 </div>
             </div>
@@ -39,7 +39,7 @@
             <div class="layui-col-xs6">
                 <label class="layui-form-label">密码</label>
                 <div class="layui-input-block">
-                    <input type="password" id="password" name="password" class="layui-input" autocomplete="off"
+                    <input type="password" id="password" ay-verify="required" name="password" class="layui-input" autocomplete="off"
                            placeholder="请输入密码"
                     >
                 </div>
@@ -74,7 +74,7 @@
             <div class="layui-col-xs6">
                 <label class="layui-form-label">邮箱</label>
                 <div class="layui-input-block">
-                    <input type="email" id="email" name="email" class="layui-input" autocomplete="off"
+                    <input type="email" id="email" name="email" lay-verify="email" class="layui-input" autocomplete="off"
                            placeholder="请输入邮箱"
                     >
                 </div>

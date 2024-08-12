@@ -26,7 +26,7 @@
     let apiUrl = "/user";
     let cols = [
         [ // 表头
-            {type: 'checkbox'},
+            {type: 'checkbox', fixed: 'left', width: '5%', height: '5%'},
             {field: 'id', title: '用户ID', width: '5%', sort: false},
             {
                 field: 'avatar',
@@ -46,11 +46,11 @@
                     }
                 }},
             {field: 'nickname', title: '用户昵称', width: '10%', sort: false},
-            {field: 'password',type: 'password', title: '用户密码', width: '15%'},
+            {field: 'password',type: 'password', title: '用户密码', width: '12%'},
             {field: 'role', title: '角色', width: '10%'},
             {title: '状态', width: '10%', templet: '#ID-table-demo-templet-switch'},
             {field: 'createTime', title: '创建时间', width: '10%', sort: true},
-            {title: '操作', width: '11.5%', align: 'center', toolbar: '#barComponent'}
+            {title: '操作', width: '10%', align: 'center', toolbar: '#barComponent'}
         ]
     ];
     initPage("redDataTable", cols);

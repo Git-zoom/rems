@@ -34,9 +34,9 @@ h2 {
 }
 
 input::-webkit-input-placeholder {
-    color: #6d6d6d;
-    font-size: 13px;
-    font-weight: normal;
+    color: #6d6d6d !important;
+    font-size: 13px !important;
+    font-weight: normal !important;
 }
 
 .container {
@@ -76,13 +76,13 @@ input::-webkit-input-placeholder {
 }
 
 .input {
-    max-width: 100%;
-    height: 35px;
-    background-color: #05060f0a;
-    border-radius: .5rem;
-    padding: 0 1rem;
-    border: 2px solid #636469FF;
-    font-size: 1rem;
+    max-width: 100% !important;
+    height: 35px !important;
+    background-color: #05060f0a !important;
+    border-radius: .5rem !important;
+    padding: 0 1rem !important;
+    border: 2px solid #636469FF !important;
+    font-size: 1rem !important;
     transition: border-color .3s cubic-bezier(.25, .01, .25, 1) 0s, color .3s cubic-bezier(.25, .01, .25, 1) 0s, background .2s cubic-bezier(.25, .01, .25, 1) 0s;
 }
 

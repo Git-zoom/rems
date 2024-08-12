@@ -3,7 +3,6 @@ let table = null
 let dropdown = null // 下拉框
 let $ = null
 let pageTitle = document.title
-let form = null
 
 /**
  * @function layui的页面初始化
@@ -12,15 +11,48 @@ let form = null
  */
 function initPage(tableId, cols) {
     layui.use(['table', 'layer'], function () {
-        form = layui.form;
         table = layui.table;
         dropdown = layui.dropdown; //下拉菜单
         $ = layui.jquery;
         // 页面初始化 --> 加载数据
         table.render({
-            elem: '#' + tableId, id: 'dataTable', height: 'full-0', url: apiUrl + "/list", page: true, // 开启分页
-            toolbar: 'default', size: 'lg', // 大尺寸表格
-            cols: cols
+            elem: '#' + tableId,
+            id: 'dataTable',
+            height: 'full-0',
+            url: apiUrl + "/list",
+            page: true, // 开启分页
+            toolbar: 'default',
+            size: 'lg', // 大尺寸表格
+            cols: cols,
+            done: function (res, curr, count){
+                //解决操作栏因为内容过多换行问题
+                let tableMainTr = $(".layui-table-main tr");
+                tableMainTr.each(function (index, val) {
+                    $($(".layui-table-fixed-l .layui-table-body tbody tr")[index]).height($(val).height());
+                    $($(".layui-table-fixed-r .layui-table-body tbody tr")[index]).height($(val).height());
+                });
+                //解决fixed固定，而导致的th高度不一致
+                tableMainTr.each(function (index, val) {
+                    $(".layui-table-fixed").each(function () {
+                        $($(this).find(".layui-table-header thead th")[index]).height($(val).height() - 1);
+                    });
+                });
+                tableMainTr.each(function (index, val) {
+                    $(".layui-table-fixed").each(function () {
+                        $($(this).find(".layui-table-header thead tr")[index]).height($(val).height());
+                    });
+                });
+                tableMainTr.each(function (index, val) {
+                    $(".layui-table-fixed").each(function () {
+                        $($(this).find(".layui-table-body tbody tr")[index]).height($(val).height());
+                    });
+                });
+                tableMainTr.each(function (index, val) {
+                    $(".layui-table-fixed").each(function () {
+                        $($(this).find(".layui-table-body tbody th")[index]).height($(val).height() - 1);
+                    });
+                });
+            }
         });
         table.resize('dataTable');
         // 顶部工具栏事件
@@ -87,13 +119,13 @@ function initPage(tableId, cols) {
             } else if (layEvent === 'more') {
                 // 下拉菜单
                 dropdown.render({
-                    elem: this // 触发事件的 DOM 对象
-                    , show: true // 外部事件触发即显示
-                    , data: [{
-                        title: '编辑', id: 'edit'
-                    }, {
-                        title: '删除', id: 'del'
-                    }], click: function (menuData) {
+                    elem: this, // 触发事件的 DOM 对象
+                    show: true, // 外部事件触发即显示
+                    data: [
+                        { title: '编辑', id: 'edit' },
+                        { title: '删除', id: 'del' }
+                    ],
+                    click: function (menuData) {
                         // 删除一条记录
                         if (menuData.id === 'del') {
                             layer.confirm('真的删除行么', function (index) {
@@ -123,8 +155,9 @@ function initPage(tableId, cols) {
                         } else if (menuData.id === 'edit') {
                             openWindow(apiUrl + "/to-edit/" + data.id, "编辑" + pageTitle);
                         }
-                    }, align: 'right' // 右对齐弹出
-                    , style: 'box-shadow: 1px 1px 10px rgb(0 0 0 / 12%);' // 设置额外样式
+                    },
+                    align: 'right', // 右对齐弹出
+                    style: 'box-shadow: 1px 1px 10px rgb(0 0 0 / 12%);' // 设置额外样式
                 })
             }
         });
