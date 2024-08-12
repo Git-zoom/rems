@@ -19,8 +19,8 @@
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item layui-hide layui-show-md-inline-block">
                 <a href="javascript:">
-                    <img th:src="@{'/images/'+${session.user.face}}" style="border-radius: 50%">
-                    [[${session.user.username} ]]
+                    <img th:src="@{'/images/'+${session.user.avatar}}" style="border-radius: 50%">
+                    [[${session.user.nickname} ]]
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="">个人中心</a></dd>

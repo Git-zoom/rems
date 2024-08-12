@@ -86,7 +86,7 @@ public class MessageController {
         UserEntity userEntity = (UserEntity)req.getSession().getAttribute("user");
         messageEntity.setMsgContent(content);
         messageEntity.setMsgUsername(userEntity.getUsername());
-        messageEntity.setMsgUserFace(userEntity.getFace());
+        messageEntity.setMsgUserFace(userEntity.getAvatar());
         messageService.add(messageEntity);
         List<MessageEntity> messageEntityList = new ArrayList<>();
         messageEntityList.add(messageEntity);

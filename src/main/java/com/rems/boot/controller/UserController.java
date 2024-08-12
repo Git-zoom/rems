@@ -40,8 +40,8 @@ public class UserController {
         }
         userEntity1.setUsername(userEntity.getUsername());
         userEntity1.setPassword(userEntity.getPassword());
-        userEntity1.setFace(userEntity.getFace());
-        userEntity1.setType(userEntity.getType());
+        userEntity1.setAvatar(userEntity.getAvatar());
+        userEntity1.setRole(userEntity.getRole());
         UserEntity newUser = userService.add(userEntity);
         return newUser != null ? LayResult.success() : LayResult.error("添加用户失败");
     }
@@ -58,7 +58,7 @@ public class UserController {
         return flag ? LayResult.success() : LayResult.error("批量删除失败");
     }
 
-    @RequestMapping("/update")
+    @PostMapping("/update")
     public LayResult<Void> updateUser(@RequestBody UserEntity userEntity) {
         userService.update(userEntity);
         return LayResult.success();

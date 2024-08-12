@@ -2,12 +2,16 @@ package com.rems.boot.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.rems.boot.enums.GenderEnum;
+import com.rems.boot.enums.UserStatusEnum;
 import com.rems.boot.enums.UserTypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -36,21 +40,41 @@ public class UserEntity implements Serializable {
      */
     private String username;
     /**
+     * 昵称
+     */
+    private String nickname;
+    /**
      * 用户密码
      */
     private String password;
     /**
-     * 用户账号
+     * 性别
      */
-    private String account;
+    private GenderEnum gender;
     /**
      * 用户头像
      */
-    private String face;
+    private String avatar;
     /**
-     * 用户类别
+     * 邮箱
      */
-    private UserTypeEnum type;
+    private String email;
+    /**
+     * 手机号
+     */
+    private String mobile;
+    /**
+     * 状态
+     */
+    private UserStatusEnum status;
+    /**
+     * 角色
+     */
+    private UserTypeEnum role;
+    /**
+     * 备注
+     */
+    private String remark;
     /**
      * 创建时间
      */

@@ -1,6 +1,7 @@
 function view(apiUrl) {
-    layui.use(['form', 'layedit', 'laydate'], function () {
+    layui.use(['form', 'laydate'], function () {
         let layer = layui.layer, laydate = layui.laydate;
+        let form = layui.form;
         let $ = layui.jquery;
         let recordId = $("#recordId").val();
         // 日期
@@ -16,10 +17,18 @@ function view(apiUrl) {
             contentType: 'application/json',
             type: 'post',
             success: (res) => {
-                for (let param in res) {
-                    $('#' + param + '').val(res[param]);
-                }
-                $('.layui-unselect').val(res.type);
+                form.val('user-view-filter', {
+                    "username": res.username, // "name": "value"
+                    "nickname": res.nickname,
+                    "password": res.password,
+                    "gender": res.gender,
+                    "avatar": res.avatar,
+                    "email": res.email,
+                    "mobile": res.mobile,
+                    "status": res.status,
+                    "role": res.role,
+                    "remark": res.remark,
+                });
             },
             error: (err) => {
                 console.log(err);
@@ -27,16 +36,6 @@ function view(apiUrl) {
                     icon: 2, time: 1500
                 });
             }
-        })
-        // 头像选择
-        $(function () {
-            $(".face img").addClass("change2");
-            let user = $(".path_face");
-            $(".face img").on('click', function () {
-                let src = $(this).attr("src").substring(8);
-                user.val(src);
-                $(this).addClass("change").removeClass("change2").siblings().addClass("change2").removeClass("change");
-            });
         })
     });
 }

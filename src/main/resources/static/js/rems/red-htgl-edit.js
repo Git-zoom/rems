@@ -1,5 +1,5 @@
 function edit(apiUrl, verifys) {
-    layui.use(['form', 'layedit', 'laydate'], function () {
+    layui.use(['form', 'laydate'], function () {
         let form = layui.form, layer = layui.layer, laydate = layui.laydate;
         let $ = layui.jquery;
         // 日期
@@ -64,10 +64,21 @@ function edit(apiUrl, verifys) {
                 contentType: 'application/json',
                 type: 'post',
                 success: (res) => {
-                    for (let param in res) {
-                        $('#' + param + '').val(res[param]);
-                    }
-                    $('.layui-unselect').val(res.type);
+                    form.val('user-edit-filter', {
+                        "username": res.username, // "name": "value"
+                        "nickname": res.nickname,
+                        "password": res.password,
+                        "gender": res.gender,
+                        "avatar": res.avatar,
+                        "email": res.email,
+                        "mobile": res.mobile,
+                        "status": res.status,
+                        "role": res.role,
+                        "remark": res.remark,
+                    });
+
+                    // 表单渲染
+                    form.render();
                 },
                 error: () => {
                     layer.msg("查询失败", {

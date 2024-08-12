@@ -82,8 +82,8 @@ public class LoginController {
                 UserEntity.builder()
                         .username(username)
                         .password(MD5Util.generateSaltPassword(password))
-                        .face("face.gif")
-                        .type(UserTypeEnum.USER).build());
+                        .avatar("face.gif")
+                        .role(UserTypeEnum.USER).build());
         return Objects.nonNull(newUser) ? LayResult.success() : LayResult.error("注册失败");
     }
 
@@ -106,7 +106,8 @@ public class LoginController {
     public LayResult<Void> checkAdmin(HttpServletRequest request) {
         UserEntity userEntity = (UserEntity)request.getSession().getAttribute("user");
         log.info("#checkAdmin userEntity: " + userEntity);
-        return UserTypeEnum.ADMIN.getCode().equals(userEntity.getType().getCode()) ? LayResult.success() : LayResult.error("权限不足，请联系管理员");
+        return UserTypeEnum.ADMIN.getCode().equals(userEntity.getRole().getCode()) ? LayResult.success() :
+                LayResult.error("权限不足，请联系管理员");
     }
 
     // 退出登录

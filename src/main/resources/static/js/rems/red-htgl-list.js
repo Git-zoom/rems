@@ -3,6 +3,7 @@ let table = null
 let dropdown = null // 下拉框
 let $ = null
 let pageTitle = document.title
+let form = null
 
 /**
  * @function layui的页面初始化
@@ -11,6 +12,7 @@ let pageTitle = document.title
  */
 function initPage(tableId, cols) {
     layui.use(['table', 'layer'], function () {
+        form = layui.form;
         table = layui.table;
         dropdown = layui.dropdown; //下拉菜单
         $ = layui.jquery;
