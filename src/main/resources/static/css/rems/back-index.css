@@ -1,43 +1,19 @@
-ul, li, * {
+* {
     padding: 0;
     margin: 0;
 }
 
-.tab {
-    width: 100%;
-    height: 740px;
-    float: left;
-}
-
-ul li a {
-    color: white;
-    width: 100%;
-    height: 100%;
-    display: block;
-    text-decoration: none;
-}
-
-ul li a:visited, a:link, a:active {
+ul li a:visited, a:active {
     color: white;
     text-decoration: none;
 }
 
 ul li a:hover {
-    color: white;
     text-decoration: none;
-    background-color: #848484;
 }
 
 .change {
     background-color: #363636;
-}
-
-.b1 > ul > li {
-    padding: 10px 20px
-}
-
-.b1 > ul {
-    list-style: none;
 }
 
 .layui-footer {
@@ -59,4 +35,91 @@ ul li a:hover {
 
 .layui-tab {
     margin: 2px 0;
+}
+
+.logo-img{
+    width: 30px;
+    height: 30px;
+    padding-bottom: 3px;
+}
+
+/* layui-layout-admin css */
+.layui-layout-admin .layui-side {
+    width: 220px;
+    top: 0;
+    z-index: 1001;
+}
+.layui-side-menu .layui-nav {
+    width: 220px;
+    margin-top: 50px;
+    background: 0 0;
+}
+
+.layui-side-menu {
+    background-color: #20222A !important;
+}
+
+.layui-side-menu .layui-side-scroll {
+    width: 240px;
+}
+
+.layui-layout-admin .layui-logo {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1002;
+    width: 220px;
+    height: 49px;
+    padding: 0 15px;
+    box-sizing: border-box;
+    overflow: hidden;
+    font-weight: 500;
+    background-repeat: no-repeat;
+    background-position: center center;
+    color: rgba(255, 255, 255, .8);
+    background-color: #20222a;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .15);
+}
+
+.layui-layout-admin .layui-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid #f5f5f5;
+    box-sizing: border-box;
+    background-color: #fff;
+    color: #333;
+}
+
+.layui-header a cite, .layui-layout-admin .layui-header a {
+    color: #333;
+}
+
+.layui-layout-admin .layui-header .layui-nav .layui-nav-more {
+    border-top-color: #5f5f5f;
+}
+
+.layui-layout-admin .layui-header a:hover {
+    color: #000;
+}
+
+.layui-layout-admin .layui-header .layui-layout-right .layui-nav-child {
+    left: auto;
+    right: 0;
+    min-width: 50px;
+}
+
+.layui-layout-admin .layui-header .layui-nav-child {
+    top: 55px;
+}
+
+.layui-layout-admin .layui-layout-right {
+    padding: 0;
+}
+
+.layui-layout-admin .layui-header .layui-nav .layui-nav-item {
+    height: 50px;
+    line-height: 50px;
 }

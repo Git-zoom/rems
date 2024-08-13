@@ -5,7 +5,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>后台管理</title>
-    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css}" />
     <link rel="stylesheet" th:href="@{/layui/css/layui.css}" />
     <link rel="stylesheet" th:href="@{/css/rems/back-index.css}" />
     <script type="text/javascript" th:src="@{/jquery/jquery-3.7.1.js}"></script>
@@ -16,68 +15,66 @@
 <body>
     <div class="layui-layout layui-layout-admin">
         <div class="layui-header">
-            <div class="layui-logo layui-hide-xs layui-bg-black">后台管理系统</div>
             <!-- 右上角用户个人中心 -->
             <ul class="layui-nav layui-layout-right">
                 <li class="layui-nav-item layui-hide layui-show-md-inline-block">
                     <a href="javascript:">
-                        <img th:src="@{'/images/'+${session.user.avatar}}" style="border-radius: 50%" />
-                        [[${session.user.nickname} ]]
+                        <img th:src="@{'/images/'+${session.user.avatar}}" style="border-radius: 50%; width: 30px; height: 30px; margin-right: 5px;" />
+                        <cite>[[ ${session.user.nickname} ]]</cite>
                     </a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="">个人中心</a></dd>
-                        <dd><a href="">设置</a></dd>
-                        <dd><a href="/front-index">退出</a></dd>
+                    <dl class="layui-nav-child layui-anim layui-anim-upbit">
+                        <dd><a lay-href="set/user/info.html" href="">个人中心</a></dd>
+                        <dd><a href="">修改密码</a></dd>
+                        <hr>
+                        <dd style="text-align: center;"><a href="/front-index">退出</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item" lay-header-event="menuRight" lay-unselect>
-                    <a href="javascript:;">
+                    <a href="javascript:">
                         <i class="layui-icon layui-icon-more-vertical"></i>
                     </a>
                 </li>
             </ul>
         </div>
 
-        <div class="layui-side layui-bg-black">
+        <div class="layui-side layui-side-menu">
             <div class="layui-side-scroll">
+                <div class="layui-logo">
+                    <img class="logo-img" src="/images/mini_logo.png" />
+                    <span>后台管理系统</span>
+                </div>
                 <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
                 <ul class="layui-nav layui-nav-tree" lay-filter="test">
                     <li class="layui-nav-item layui-nav-itemed">
-                        <a class="" href="javascript:;">账户管理</a>
+                        <a class="layui-nav-title" href="javascript:"><i class="layui-icon layui-icon-user"></i>&nbsp;&nbsp;&nbsp;账户管理</a>
                         <dl class="layui-nav-child">
-                            <dd class="leftdaohang" data-url="/rems-user-manage-list" mytitle="普通用户管理">
-                                <a>&nbsp;&nbsp;&nbsp;&nbsp;普通用户管理</a>
+                            <dd class="rems-nav-item" data-url="/rems-user-manage-list" mytitle="普通用户管理">
+                                <a href="#">&emsp;&emsp;普通用户管理</a>
                             </dd>
-                            <dd class="leftdaohang" data-url="/iframe" mytitle="exploration">
-                                <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;管理员账户</a>
+                            <dd class="rems-nav-item" data-url="/iframe" mytitle="exploration">
+                                <a href="#">&emsp;&emsp;管理员账户</a>
                             </dd>
                         </dl>
                     </li>
                     <li class="layui-nav-item layui-nav-itemed">
-                        <a href="javascript:;">资源管理</a>
+                        <a class="layui-nav-title"  href="javascript:"><i class="layui-icon layui-icon-template"></i>&nbsp;&nbsp;&nbsp;资源管理</a>
                         <dl class="layui-nav-child">
-                            <dd class="leftdaohang" data-url="/rems-popular-nav-manage-list" mytitle="热门导航">
-                                <a href="javascript:;">&nbsp;&nbsp;&nbsp;&nbsp;热门导航</a>
+                            <dd class="rems-nav-item" data-url="/rems-popular-nav-manage-list" mytitle="热门导航"><a href="javascript:">&emsp;&emsp;热门导航</a>
                             </dd>
-                            <dd class="leftdaohang" data-url="/rems-question-manage-list" mytitle="问题查询">
-                                <a href="javascript:;">&nbsp;&nbsp;&nbsp;&nbsp;问题查询</a>
+                            <dd class="rems-nav-item" data-url="/rems-question-manage-list" mytitle="问题查询"><a href="javascript:">&emsp;&emsp;问题查询</a>
                             </dd>
-                            <dd class="leftdaohang" data-url="/rems-course-learning-manage-list" mytitle="课程学习">
-                                <a>&nbsp;&nbsp;&nbsp;&nbsp;课程学习</a>
+                            <dd class="rems-nav-item" data-url="/rems-course-learning-manage-list" mytitle="课程学习"><a>&emsp;&emsp;课程学习</a>
                             </dd>
-                            <dd class="leftdaohang" data-url="/rems-message-manage-list" mytitle="网站留言">
-                                <a>&nbsp;&nbsp;&nbsp;&nbsp;网站留言</a>
+                            <dd class="rems-nav-item" data-url="/rems-message-manage-list" mytitle="网站留言"><a>&emsp;&emsp;网站留言</a>
                             </dd>
                         </dl>
                     </li>
-                    <dd class="leftdaohang" data-url="/iframe" mytitle="exploration">
-                        <li class="layui-nav-item">
-                            <a href="javascript:;">系统管理</a>
-                        </li>
-                    </dd>
-                    <dd class="leftdaohang" data-url="/iframe" mytitle="exploration">
-                        <li class="layui-nav-item" data-url="/iframe"><a>权限管理</a></li>
-                    </dd>
+                    <li class="rems-nav-item layui-nav-item layui-nav-itemed" data-url="/iframe" mytitle="exploration">
+                        <a class="layui-nav-title"  href="javascript:"><i class="layui-icon layui-icon-set"></i>&nbsp;&nbsp;&nbsp;系统管理</a>
+                    </li>
+                    <li class="rems-nav-item layui-nav-item layui-nav-itemed" data-url="/iframe" mytitle="exploration">
+                        <a class="layui-nav-title" ><i class="layui-icon layui-icon-auz"></i>&nbsp;&nbsp;&nbsp;权限管理</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -112,10 +109,8 @@
     <script>
         // JS
         layui.use(['element', 'layer', 'util'], function () {
-            let element = layui.element,
-                layer = layui.layer,
-                util = layui.util,
-                $ = layui.$
+            let layer = layui.layer,
+                util = layui.util
             // 头部事件
             util.event('lay-header-event', {
                 // 左侧菜单事件
@@ -146,7 +141,7 @@
                     let htmlurl = $(this).attr('data-url')
                     let mytitle = $(this).attr('mytitle')
                     // 先判断是否已经有了tab
-                    let arrayObj = new Array()
+                    let arrayObj = []
                     $('.layui-tab-title')
                         .find('li')
                         .each(function () {
@@ -162,7 +157,7 @@
                         element.tabAdd('demo', {
                             title: mytitle,
                             content:
-                                '<iframe style="width: 100%;height: 100%;" scrolling="no" src=' +
+                                '<iframe style="width: 100%;height: 100%;" frameborder="0" src=' +
                                 htmlurl +
                                 ' ></iframe>',
                             id: mytitle // 实际使用一般是规定好的id，这里以时间戳模拟下
@@ -172,7 +167,7 @@
                     }
                 }
             }
-            $('.leftdaohang').click(function () {
+            $('.rems-nav-item').click(function () {
                 let type = 'tabAdd'
                 let othis = $(this)
                 active[type] ? active[type].call(this, othis) : ''
