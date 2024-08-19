@@ -1,21 +1,19 @@
 package com.rems.boot.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.rems.boot.core.LayResult;
+import com.rems.boot.entity.UserEntity;
+import com.rems.boot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.rems.boot.core.LayResult;
-import com.rems.boot.entity.UserEntity;
-import com.rems.boot.service.UserService;
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Author qinj
@@ -113,6 +111,11 @@ public class UserController {
     public ModelAndView viewTest(Model model, @PathVariable("userId") Integer userId) {
         model.addAttribute("userId", userId);
         return new ModelAndView("/rems-back/rems-user-manage/rems-user-manage-view");
+    }
+
+    @RequestMapping("/to-home")
+    public ModelAndView toHome() {
+        return new ModelAndView("/rems-back/rems-core/home");
     }
 
 }

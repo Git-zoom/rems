@@ -1,56 +1,56 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>课程学习管理</title>
-    <meta name="renderer" content="webkit" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all" />
+    <meta content="webkit" name="renderer"/>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"/>
+    <link media="all" rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
+    <link media="all" rel="stylesheet" th:href="@{/css/rems/back-list.css}"/>
     <script th:src="@{/layui/layui.js}"></script>
     <script th:src="@{/js/rems/red-htgl-list.js}"></script>
 </head>
 
 <body>
-    <table id="redDataTable" lay-filter="tabComponent"></table>
-    <script type="text/html" id="barDemo">
-      <a class="layui-btn layui-btn-primary layui-btn-sm" lay-event="detail"
-        >查看</a
-      >
-      <a class="layui-btn layui-btn-sm" lay-event="more"
-        >更多 <i class="layui-icon layui-icon-down"></i
-      ></a>
-    </script>
+<div class="back-container">
+    <div class="layui-panel">
+        <table class="layui-hide" id="redDataTable" lay-filter="tabComponent"></table>
+    </div>
+</div>
 
-    <script>
-        let apiUrl = '/course'
-        let cols = [
-            [
-                // 表头
-                { type: 'checkbox', fixed: 'left' },
-                { field: 'id', title: 'ID', width: '10%', sort: true, fixed: 'left' },
-                {
-                    field: 'courseTitle',
-                    title: '课程学习标题',
-                    width: '15%',
-                    sort: true
-                },
-                { field: 'courseImg', title: '课程学习图片', width: '10%' },
-                { field: 'courseSm', title: '课程学习简述', width: '15%' },
-                { field: 'courseContent', title: '课程学习内容', width: '20%' },
-                { field: 'courseIndex', title: '课程学习索引', width: '10%' },
-                {
-                    fixed: 'right',
-                    title: '操作',
-                    width: '16.5%',
-                    align: 'center',
-                    toolbar: '#barDemo'
-                }
-            ]
+<script id="barDemo" type="text/html">
+    <a class="layui-btn layui-btn-primary layui-btn-sm" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-sm" lay-event="more">更多 <i class="layui-icon layui-icon-down"></i></a>
+</script>
+
+<script>
+    let apiUrl = '/course'
+    let cols = [
+        [
+            // 表头
+            {type: 'checkbox', fixed: 'left'},
+            {field: 'id', title: 'ID', width: '10%', sort: true, fixed: 'left'},
+            {
+                field: 'courseTitle',
+                title: '课程学习标题',
+                width: '15%',
+                sort: true
+            },
+            {field: 'courseImg', title: '课程学习图片', width: '10%'},
+            {field: 'courseSm', title: '课程学习简述', width: '15%'},
+            {field: 'courseContent', title: '课程学习内容', width: '20%'},
+            {field: 'courseIndex', title: '课程学习索引', width: '10%'},
+            {
+                fixed: 'right',
+                title: '操作',
+                width: '16.5%',
+                align: 'center',
+                toolbar: '#barDemo'
+            }
         ]
-        initPage('redDataTable', cols)
-    </script>
+    ]
+    initPage('redDataTable', cols)
+</script>
 </body>
-
 </html>
