@@ -16,7 +16,7 @@
 <body>
 <div class="back-container">
     <div class="layui-panel">
-        <table class="layui-hide" id="redDataTable" lay-filter="tabComponent"></table>
+        <table class="layui-hide layui-table" id="redDataTable" lay-filter="tabComponent"></table>
     </div>
 </div>
 
@@ -36,21 +36,21 @@
     let cols = [
         [
             // 表头
-            {type: 'checkbox', fixed: 'left', width: '5%', height: '5%'},
-            {field: 'id', title: '用户ID', width: '5%', sort: false},
+            {type: 'checkbox', fixed: 'left'},
+            {field: 'id', title: '用户ID', width: 80},
             {
                 field: 'avatar',
                 title: '用户头像',
-                width: '8%',
+                width: 120,
                 templet:
                     '<div><img style="width: 40px;height: 40px" src="/images/{{=d.avatar}}"/></div>',
                 style: 'margin:0;padding:3px 5px;'
             },
-            {field: 'username', title: '用户名称', width: '12%', sort: true},
+            {field: 'username', title: '用户名称', width: 150, sort: true},
             {
                 field: 'gender',
                 title: '性别',
-                width: '5%',
+                width: 80,
                 templet: function (d) {
                     if (d.gender === 'MALE') {
                         return '<span style="color: blue">♂</span>'
@@ -62,23 +62,24 @@
                     }
                 }
             },
-            {field: 'nickname', title: '用户昵称', width: '10%', sort: false},
+            {field: 'nickname', title: '用户昵称', width: 150, sort: false},
             {
                 field: 'password',
                 type: 'password',
                 title: '用户密码',
-                width: '12%'
+                width: 250
             },
             {field: 'role', title: '角色', width: '10%'},
             {
                 title: '状态',
-                width: '10%',
+                width: 120,
                 templet: '#ID-table-demo-templet-switch'
             },
-            {field: 'createTime', title: '创建时间', width: '12.5%', sort: true, fixed: 'right'},
+            {field: 'createTime', title: '创建时间', width: 247, sort: true, fixed: 'right'},
             {
                 title: '操作',
-                width: '10%',
+                width: 234,
+                minWidth: 180,
                 align: 'center',
                 toolbar: '#barComponent'
             }
