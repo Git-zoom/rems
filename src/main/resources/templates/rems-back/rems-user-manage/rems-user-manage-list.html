@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="utf-8"/>
     <title>普通用户管理</title>
@@ -16,7 +15,7 @@
 <body>
 <div class="back-container">
     <div class="layui-panel">
-        <table class="layui-hide layui-table" id="redDataTable" lay-filter="tabComponent"></table>
+        <table class="layui-hide" id="redDataTable" lay-filter="tabComponent"></table>
     </div>
 </div>
 
@@ -24,13 +23,10 @@
     <a class="layui-btn layui-btn-primary layui-btn-sm" lay-event="detail">查看</a>
     <a class="layui-btn layui-btn-sm" lay-event="more">更多 <i class="layui-icon layui-icon-down"></i></a>
 </script>
-
 <script id="ID-table-demo-templet-switch" type="text/html">
     <input type="checkbox" name="status" title="开启|关闭" value="{{=d.id}}"
-           lay-skin="switch" lay-filter="demo-templet-status" {{=d.status== "ACTIVE"
-    ? "checked" : "" }}>
+           lay-skin="switch" lay-filter="demo-templet-status" {{=d.status== "ACTIVE" ? "checked" : "" }}>
 </script>
-
 <script>
     let apiUrl = '/user'
     let cols = [
@@ -42,9 +38,8 @@
                 field: 'avatar',
                 title: '用户头像',
                 width: 120,
-                templet:
-                    '<div><img style="width: 40px;height: 40px" src="/images/{{=d.avatar}}"/></div>',
-                style: 'margin:0;padding:3px 5px;'
+                templet: '<div><img style="width: 40px;height: 40px" src="/images/{{=d.avatar}}"/></div>',
+                style: 'margin:0;padding:0;'
             },
             {field: 'username', title: '用户名称', width: 150, sort: true},
             {
@@ -63,33 +58,18 @@
                 }
             },
             {field: 'nickname', title: '用户昵称', width: 150, sort: false},
-            {
-                field: 'password',
-                type: 'password',
-                title: '用户密码',
-                width: 250
-            },
-            {field: 'role', title: '角色', width: '10%'},
-            {
-                title: '状态',
-                width: 120,
-                templet: '#ID-table-demo-templet-switch'
-            },
-            {field: 'createTime', title: '创建时间', width: 247, sort: true, fixed: 'right'},
-            {
-                title: '操作',
-                width: 234,
-                minWidth: 180,
-                align: 'center',
-                toolbar: '#barComponent'
-            }
+            {field: 'password', type: 'password', title: '用户密码', width: 230},
+            {field: 'role', title: '角色', width: 120},
+            {title: '状态', width: 100, templet: '#ID-table-demo-templet-switch',},
+            {field: 'createTime', title: '创建时间', width: 240, sort: true},
+            {title: '操作', fixed: 'right', align: 'center', toolbar: '#barComponent'}
         ]
     ]
     initPage('redDataTable', cols)
 
+    // 状态开关操作
     layui.use(['table', 'layer'], function () {
-        form = layui.form
-        // 用户管理 - 状态开关操作
+        const form = layui.form;
         form.on('switch(demo-templet-status)', function (obj) {
             console.log(obj)
             let status = obj.elem.checked ? 'ACTIVE' : 'INACTIVE'
@@ -119,5 +99,4 @@
     })
 </script>
 </body>
-
 </html>

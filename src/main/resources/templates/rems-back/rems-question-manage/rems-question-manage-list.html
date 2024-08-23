@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="utf-8"/>
     <title>问题查询管理</title>
@@ -13,7 +12,6 @@
     <script th:src="@{/js/rems/red-htgl-list.js}"></script>
     <script th:src="@{/js/utils/date-util.js}"></script>
 </head>
-
 <body>
 <div class="back-container">
     <div class="layui-panel">
@@ -25,7 +23,6 @@
     <a class="layui-btn layui-btn-primary layui-btn-sm" lay-event="detail">查看</a>
     <a class="layui-btn layui-btn-sm" lay-event="more">更多 <i class="layui-icon layui-icon-down"></i></a>
 </script>
-
 <script>
     let apiUrl = '/question'
     let cols = [
@@ -42,17 +39,10 @@
                 templet: '<div> {{ timestampToYMDHMS(d.quesDate) }} </div>'
             },
             {field: 'quesSource', title: '文章来源', width: '20%'},
-            {
-                fixed: 'right',
-                title: '操作',
-                width: '16.5%',
-                align: 'center',
-                toolbar: '#barDemo'
-            }
+            {fixed: 'right', title: '操作', align: 'center', toolbar: '#barDemo'}
         ]
     ]
     initPage('redDataTable', cols)
 </script>
 </body>
-
 </html>
