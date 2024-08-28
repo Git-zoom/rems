@@ -25,7 +25,7 @@ import java.util.Date;
 @TableName("rems_popular_nav")
 public class PopularNavEntity implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 20240828144536L;
 
     /**
      * 主键ID

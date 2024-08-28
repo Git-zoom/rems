@@ -1,19 +1,18 @@
 package com.rems.boot.entity;
 
+import java.io.Serializable;
+import java.util.Date;
+
 import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.rems.boot.enums.GenderEnum;
 import com.rems.boot.enums.UserStatusEnum;
 import com.rems.boot.enums.UserTypeEnum;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import java.io.Serializable;
-import java.util.Date;
 
 /**
  * @Author qinj
@@ -28,7 +27,7 @@ import java.util.Date;
 @TableName("rems_user")
 public class UserEntity implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 20240828144538L;
 
     /**
      * 主键ID（用户编号）

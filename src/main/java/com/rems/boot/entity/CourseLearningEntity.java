@@ -23,7 +23,7 @@ import java.util.Date;
 @TableName("rems_course_learning")
 public class CourseLearningEntity implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 20240828144533L;
 
     /**
      * 主键ID(课程学习编号)

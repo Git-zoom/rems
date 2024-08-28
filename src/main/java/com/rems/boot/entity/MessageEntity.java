@@ -23,7 +23,7 @@ import java.util.Date;
 @TableName("rems_message")
 public class MessageEntity implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 20240828144534L;
 
     /**
      * 主键ID（留言编号）
