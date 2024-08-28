@@ -85,7 +85,7 @@ layui.use(['form'], function () {
                 })
             }
         })
-        return false
+        return false;
     })
 
     // 重置表单
@@ -99,6 +99,7 @@ layui.use(['form'], function () {
             'remark': ''
         });
         form.render();
+        return false;
     })
 
     // 头像选择

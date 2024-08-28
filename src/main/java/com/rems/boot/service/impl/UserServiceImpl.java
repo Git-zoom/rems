@@ -3,6 +3,7 @@ package com.rems.boot.service.impl;
 import java.util.List;
 import java.util.Objects;
 
+import com.rems.boot.model.req.ModifyPasswordReq;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,6 +41,31 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
             throw new RuntimeException("用户名或密码错误");
         }
         return userEntity;
+    }
+
+    @Override
+    public boolean modifyPassword(ModifyPasswordReq req) {
+        Objects.requireNonNull(req, "#modifyPassword ModifyPasswordReq cannot be null");
+        Integer userId = req.getUserId();
+        UserEntity userEntity = get(UserEntity.builder().id(userId).build());
+        if (Objects.nonNull(userEntity)) {
+            String oldPassword = req.getOldPassword();
+            String newPassword = req.getPassword();
+            String saltPassword = userEntity.getPassword();
+
+            // oldPassword 与 saltPassword 进行比对
+            if (MD5Util.verifySaltPassword(oldPassword, saltPassword)) {
+
+                // 修改密码
+                userEntity.setPassword(MD5Util.generateSaltPassword(newPassword));
+                update(userEntity);
+                return true;
+            } else {
+                throw new RuntimeException("原密码错误");
+            }
+        }
+
+        return false;
     }
 
     @Override

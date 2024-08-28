@@ -3,6 +3,7 @@ package com.rems.boot.service;
 import java.util.List;
 
 import com.rems.boot.entity.UserEntity;
+import com.rems.boot.model.req.ModifyPasswordReq;
 
 /**
  * @Author qinj
@@ -16,5 +17,8 @@ public interface UserService extends EntityQueryService<UserEntity, UserEntity> 
 
     // 检验用户登录
     UserEntity checkLogin(String username, String password);
+
+    // 修改密码
+    boolean modifyPassword(ModifyPasswordReq req);
 
 }

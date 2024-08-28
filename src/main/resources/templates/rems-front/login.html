@@ -113,12 +113,17 @@
               if (res.code === 0) {
                 layer.load(2)
                 setTimeout(function () {
+                  $('#warn').html('')
                   layer.closeAll('loading')
                   window.location.href = '/front-index'
                 }, 1000)
               } else {
                 $('#warn').html('账号或者密码有误')
               }
+            },
+            error: function (res) {
+              $('#warn').html('账号或者密码有误')
+              // errorMsg(res.responseJSON.msg)
             }
           })
         })

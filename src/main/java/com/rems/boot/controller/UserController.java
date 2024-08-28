@@ -1,19 +1,22 @@
 package com.rems.boot.controller;
 
-import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.rems.boot.core.LayResult;
-import com.rems.boot.entity.UserEntity;
-import com.rems.boot.service.UserService;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.rems.boot.core.LayResult;
+import com.rems.boot.entity.UserEntity;
+import com.rems.boot.model.req.ModifyPasswordReq;
+import com.rems.boot.service.UserService;
 
 /**
  * @Author qinj
@@ -60,6 +63,11 @@ public class UserController {
     public LayResult<Void> updateUser(@RequestBody UserEntity userEntity) {
         userService.update(userEntity);
         return LayResult.success();
+    }
+
+    @PostMapping("/modify-password")
+    public LayResult<Void> modifyPassword(@RequestBody ModifyPasswordReq modifyPasswordReq) {
+        return userService.modifyPassword(modifyPasswordReq) ? LayResult.success() : LayResult.error("修改密码失败!");
     }
 
     @RequestMapping("/get")
