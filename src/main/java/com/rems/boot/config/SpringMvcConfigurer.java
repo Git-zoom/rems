@@ -34,6 +34,7 @@ public class SpringMvcConfigurer implements WebMvcConfigurer {
         registry.addViewController("/course03").setViewName("/rems-back/rems-course-learning-manage/course-learning-03");
         registry.addViewController("/course04").setViewName("/rems-back/rems-course-learning-manage/course-learning-04");
         registry.addViewController("/rems-user-manage-list").setViewName("/rems-back/rems-user-manage/rems-user-manage-list");
+        registry.addViewController("/rems-admin-manage-list").setViewName("/rems-back/rems-user-manage/rems-admin-manage-list");
         registry.addViewController("/rems-user-info").setViewName("/rems-back/rems-user-manage/rems-user-info");
         registry.addViewController("/rems-modify-password").setViewName("/rems-back/rems-user-manage/rems-modify-password");
         registry.addViewController("/rems-course-learning-manage-list").setViewName("/rems-back/rems-course-learning-manage/rems-course-learning-manage-list");

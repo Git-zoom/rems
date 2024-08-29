@@ -65,7 +65,7 @@
             {title: '操作', fixed: 'right', align: 'center', toolbar: '#barComponent'}
         ]
     ]
-    initPage('redDataTable', cols)
+    initPage('redDataTable', cols, {isAdmin: false} )
 
     // 状态开关操作
     layui.use(['table', 'layer'], function () {

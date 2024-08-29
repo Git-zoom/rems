@@ -3,7 +3,9 @@ package com.rems.boot.service.impl;
 import java.util.List;
 import java.util.Objects;
 
+import com.rems.boot.enums.UserTypeEnum;
 import com.rems.boot.model.req.ModifyPasswordReq;
+import com.rems.boot.model.req.UserQuery;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -103,19 +105,26 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
     }
 
     @Override
-    public List<UserEntity> list(UserEntity query) {
+    public List<UserEntity> list(UserQuery query) {
         return list(getQueryWrapper(query));
     }
 
     @Override
-    public Page<UserEntity> page(UserEntity query, Page<UserEntity> page) {
+    public Page<UserEntity> page(UserQuery query, Page<UserEntity> page) {
         return page(page, getQueryWrapper(query));
     }
 
-    private LambdaQueryWrapper<UserEntity> getQueryWrapper(UserEntity query) {
+    private LambdaQueryWrapper<UserEntity> getQueryWrapper(UserQuery query) {
         LambdaQueryWrapper<UserEntity> queryWrapper = new LambdaQueryWrapper<>();
         if (Objects.nonNull(query.getUsername())) {
             queryWrapper.like(UserEntity::getUsername, query.getUsername());
+        }
+        if (Objects.nonNull(query.getIsAdmin())) {
+            if (query.getIsAdmin()){
+                queryWrapper.eq(UserEntity::getRole, UserTypeEnum.ADMIN);
+            } else {
+                queryWrapper.ne(UserEntity::getRole, UserTypeEnum.ADMIN);
+            }
         }
         return queryWrapper;
     }

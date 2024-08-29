@@ -11,8 +11,9 @@ let pageTitle = document.title
  * @function layui的页面初始化
  * @param tableId 页面table的id
  * @param cols 字段列表
+ * @param params 查询参数
  */
-function initPage(tableId, cols) {
+function initPage(tableId, cols, params) {
     layui.use(['table', 'layer'], function () {
         table = layui.table
         dropdown = layui.dropdown
@@ -22,6 +23,8 @@ function initPage(tableId, cols) {
             id: 'dataTable',
             elem: '#' + tableId,
             url: apiUrl + '/list',
+            method: 'get',
+            where: params,
             height: 'full-82',
             page: true,
             toolbar: 'default',

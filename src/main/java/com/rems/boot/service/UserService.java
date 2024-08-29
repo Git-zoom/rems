@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.rems.boot.entity.UserEntity;
 import com.rems.boot.model.req.ModifyPasswordReq;
+import com.rems.boot.model.req.UserQuery;
 
 /**
  * @Author qinj
@@ -11,7 +12,7 @@ import com.rems.boot.model.req.ModifyPasswordReq;
  * @Description 用户 Service
  * @Version 1.0
  */
-public interface UserService extends EntityQueryService<UserEntity, UserEntity> {
+public interface UserService extends EntityQueryService<UserEntity, UserQuery> {
 
     boolean deleteBatch(List<Long> ids);
 

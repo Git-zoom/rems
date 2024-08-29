@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.rems.boot.model.req.UserQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.ui.Model;
@@ -78,8 +79,10 @@ public class UserController {
     }
 
     @GetMapping("/list")
-    public LayResult<UserEntity> list(@RequestParam("page") Integer pageIndex, @RequestParam("limit") Integer pageSize) {
-        Page<UserEntity> result = userService.page(UserEntity.builder().build(), new Page<>(pageIndex, pageSize));
+    public LayResult<UserEntity> list(@RequestParam("page") Integer pageIndex,
+                                      @RequestParam("limit") Integer pageSize,
+                                      UserQuery userQuery) {
+        Page<UserEntity> result = userService.page(userQuery, new Page<>(pageIndex, pageSize));
         return LayResult.success(result.getRecords(), result.getTotal());
     }
 
