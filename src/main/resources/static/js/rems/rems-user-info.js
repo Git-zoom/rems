@@ -61,29 +61,31 @@ layui.use(['form'], function () {
     });
 
     // 提交修改
-    form.on('submit(set-my-info)', function (data) {
-        $.ajax({
-            url: '/user/update',
-            type: 'post',
-            data: JSON.stringify(data.field),
-            dateType: 'json',
-            contentType: 'application/json',
-            success: (res) => {
-                if (res.code === 0) {
-                    layer.msg('修改成功！', {
-                        icon: 1, time: 1500
-                    })
-                } else {
-                    layer.msg(res.msg, {
+    $('#set-my-info').on('click', function () {
+        form.submit('user-info-filter', function (data) {
+            $.ajax({
+                url: '/user/update',
+                type: 'post',
+                data: JSON.stringify(data.field),
+                dateType: 'json',
+                contentType: 'application/json',
+                success: (res) => {
+                    if (res.code === 0) {
+                        layer.msg('修改成功！', {
+                            icon: 1, time: 1500
+                        })
+                    } else {
+                        layer.msg(res.msg, {
+                            icon: 2, time: 1500
+                        })
+                    }
+                },
+                error: (error) => {
+                    layer.msg('修改失败！' + error, {
                         icon: 2, time: 1500
                     })
                 }
-            },
-            error: (error) => {
-                layer.msg('修改失败！' + error, {
-                    icon: 2, time: 1500
-                })
-            }
+            })
         })
         return false;
     })
