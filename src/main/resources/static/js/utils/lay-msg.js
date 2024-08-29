@@ -1,3 +1,4 @@
+// 导入 layui.js ，如果引用了该文件，则不需要再引入 layui.js 了
 document.write("<script src='../../layui/layui.js'></script>")
 
 function successMsg(msg) {

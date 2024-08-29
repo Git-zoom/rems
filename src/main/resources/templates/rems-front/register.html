@@ -1,141 +1,109 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="utf-8" />
+<head>
+    <meta charset="utf-8"/>
     <title>注册页面</title>
     <script th:src="@{/jquery/jquery-3.7.1.js}"></script>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      th:href="@{/css/rems/login-register.css}"
-    />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/rems/login-register.css}"/>
     <script type="text/javascript" th:src="@{/layui/layui.js}"></script>
     <script th:src="@{/js/utils/lay-msg.js}"></script>
     <script th:src="@{/md5/md5.min.js}"></script>
-  </head>
-  <body>
-    <div class="container">
-      <header>
+</head>
+<body>
+<div class="container">
+    <header>
         <h1>红色教育网</h1>
         <h2>Register</h2>
-      </header>
-      <div class="content">
+    </header>
+    <div class="content">
         <form id="register" method="post">
-          <div class="input-group">
-            <div class="input-group-item">
-              <label class="label">账 &nbsp; &nbsp;号：</label>
-              <input
-                autocomplete="off"
-                name="u_username"
-                id="name"
-                placeholder="请输入账号"
-                class="input"
-                type="text"
-              />
-              <div></div>
+            <div class="input-group">
+                <div class="input-group-item">
+                    <label for="name" class="label">账 &nbsp; &nbsp;号：</label>
+                    <input autocomplete="off" name="u_username" id="name" placeholder="请输入账号" class="input"
+                           type="text"/>
+                    <div></div>
+                </div>
+                <div class="input-group-item">
+                    <label for="password" class="label">密 &nbsp; &nbsp;码：</label>
+                    <input autocomplete="off" name="u_password" id="password" placeholder="请输入密码"
+                           class="input" type="password"/>
+                    <div></div>
+                </div>
+                <div class="input-group-item">
+                    <label for="password2" class="label">确认密码：</label>
+                    <input autocomplete="off" name="u_pwd2" id="password2" placeholder="请再输入一次密码" class="input"
+                           type="password"/>
+                    <div></div>
+                </div>
+                <span id="warn" class="warn"></span><br/>
+                <div class="input-group-item">
+                    <input type="button" id="u_register" class="button btn-login" value="注   册"/>
+                    <input type="reset" id="u_reset" class="button bt-reset" value="重   置"/>
+                </div>
+                <div class="input-group-item to-register">
+                    <a id="login" class="register" href="/static">
+                        已有账号？<span class="register-blue"> 去登录</span>
+                    </a>
+                </div>
             </div>
-            <div class="input-group-item">
-              <label class="label">密 &nbsp; &nbsp;码：</label>
-              <input
-                autocomplete="off"
-                name="u_password"
-                id="password"
-                placeholder="请输入密码"
-                class="input"
-                type="password"
-              />
-              <div></div>
-            </div>
-            <div class="input-group-item">
-              <label class="label">确认密码：</label>
-              <input
-                autocomplete="off"
-                name="u_pwd2"
-                id="password2"
-                placeholder="请再输入一次密码"
-                class="input"
-                type="password"
-              />
-              <div></div>
-            </div>
-            <span id="warn" class="warn"></span><br />
-            <div class="input-group-item">
-              <input
-                type="button"
-                id="u_register"
-                class="button btn-login"
-                value="注   册"
-              />
-              <input
-                type="reset"
-                id="u_reset"
-                class="button bt-reset"
-                value="重   置"
-              />
-            </div>
-            <div class="input-group-item to-register">
-              <a id="login" class="register" href="/static"
-                >已有账号？<span class="register-blue"> 去登录</span></a
-              >
-            </div>
-          </div>
         </form>
-      </div>
     </div>
-  </body>
-  <script type="text/javascript">
+</div>
+</body>
+<script type="text/javascript">
     layer = layui.layer
     $(function () {
-      // 判断用户名密码是否为空，两次密码是否一致
-      $('#u_register').click(function () {
-        let username = $('#name')
-        let password = $('#password')
-        let repsword = $('#password2')
-        if (username.val() === '') {
-          warnMsg('用户名不能为空！')
-          return false
-        }
-        if (password.val() === '') {
-          warnMsg('密码不能为空！')
-          return false
-        }
-        if (password.val() !== repsword.val()) {
-          errorMsg('两次输入的密码不匹配！')
-          return false
-        }
-        let salt = '1a2b3c4d'
-        let str =
-          '' +
-          salt.charAt(0) +
-          salt.charAt(2) +
-          password.val() +
-          salt.charAt(5) +
-          salt.charAt(4)
-        let passwordEncrypt = md5(str)
-        //账号密码输入后进行存入数据库
-        $.ajax({
-          type: 'post',
-          url: '/register',
-          data: {
-            username: username.val(),
-            password: passwordEncrypt
-          },
-          success: function (res) {
-            console.log(res)
-            if (res.code === 0) {
-              successMsg('注册成功！')
-              setTimeout(function () {
-                window.location.href = '/'
-              }, 1000)
-            } else {
-              layer.msg(res.msg, { icon: 2, time: 1000 })
+        // 判断用户名密码是否为空，两次密码是否一致
+        $('#u_register').click(function () {
+            let username = $('#name')
+            let password = $('#password')
+            let repsword = $('#password2')
+            if (username.val() === '') {
+                warnMsg('用户名不能为空！')
+                return false
             }
-          },
-          error: function (err) {
-            errorMsg('注册失败！')
-          }
+            if (password.val() === '') {
+                warnMsg('密码不能为空！')
+                return false
+            }
+            if (password.val() !== repsword.val()) {
+                errorMsg('两次输入的密码不匹配！')
+                return false
+            }
+            let salt = '1a2b3c4d'
+            let str =
+                '' +
+                salt.charAt(0) +
+                salt.charAt(2) +
+                password.val() +
+                salt.charAt(5) +
+                salt.charAt(4)
+            let passwordEncrypt = md5(str)
+            //账号密码输入后进行存入数据库
+            $.ajax({
+                type: 'post',
+                url: '/register',
+                data: {
+                    username: username.val(),
+                    password: passwordEncrypt
+                },
+                success: function (res) {
+                    console.log(res)
+                    if (res.code === 0) {
+                        successMsg('注册成功！')
+                        setTimeout(function () {
+                            window.location.href = '/'
+                        }, 1000)
+                    } else {
+                        layer.msg(res.msg, {icon: 2, time: 1000})
+                    }
+                },
+                error: function (err) {
+                    errorMsg('注册失败！')
+                }
+            })
         })
-      })
     })
-  </script>
+</script>
 </html>
